@@ -1,9 +1,11 @@
 import React from "react";
 import MainPage from "../main-page/main-page.jsx";
 
-const App = () => {
+const App = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {placesToStay} = props;
   return (
-    <MainPage />
+    <MainPage placesToStay={placesToStay} />
   );
 };
 

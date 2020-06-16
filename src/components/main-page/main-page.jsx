@@ -1,8 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const MainPage = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {placesToStay} = props;
+const MainPage = ({placesToStay, placeCardNameArr}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -126,7 +125,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <a href="#">{placeCardNameArr[0]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -158,7 +157,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">{placeCardNameArr[1]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -190,7 +189,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
+                      <a href="#">{placeCardNameArr[2]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -225,7 +224,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
+                      <a href="#">{placeCardNameArr[3]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -257,7 +256,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">{placeCardNameArr[1]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -273,5 +272,11 @@ const MainPage = (props) => {
     </div>
   );
 };
+
+MainPage.propTypes = {
+  placesToStay: PropTypes.number.isRequired,
+  placeCardNameArr: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
 
 export default MainPage;

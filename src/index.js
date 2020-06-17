@@ -4,17 +4,19 @@ import App from "./components/app/app.jsx";
 
 const Settings = {
   PLACES_TO_STAY: 333,
-  PLACE_CARD_NAME_ARR:
-    [`Beautiful & luxurious apartment at great location`,
-      `Wood and stone place`,
-      `Canal View Prinsengracht`,
-      `Nice, cozy, warm big bed apartment`]
 };
+
+const CardNames = [
+  {title: `Beautiful & luxurious apartment at great location`, id: 1},
+  {title: `Wood and stone place`, id: 2},
+  {title: `Canal View Prinsengracht`, id: 3},
+  {title: `Nice, cozy, warm big bed apartment`, id: 4}
+];
 
 ReactDOM.render(
     <App
       placesToStay = {Settings.PLACES_TO_STAY}
-      placeCardNameArr = {Settings.PLACE_CARD_NAME_ARR}
+      cardNames = {CardNames}
     />,
     document.querySelector(`#root`)
 );

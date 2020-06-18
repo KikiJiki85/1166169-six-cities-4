@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 
-const CardsList = ({cardNames}) => {
+const CardsList = ({cardNames, onHeaderClick}) => {
   const elements = cardNames.map((item) => {
     return (
-      <Card title = {item.title} key = {item.id}/>
+      <Card title = {item.title} key = {item.id} onHeaderClick={onHeaderClick}/>
     );
   });
 
@@ -22,7 +22,8 @@ CardsList.propTypes = {
         title: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
 
 export default CardsList;

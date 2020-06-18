@@ -91,6 +91,7 @@ exports[`Render CardsList 1`] = `
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
@@ -192,6 +193,7 @@ exports[`Render CardsList 1`] = `
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"

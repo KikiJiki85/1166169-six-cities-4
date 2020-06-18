@@ -9,6 +9,7 @@ it(`Render MainPage`, () => {
       placesToStay={222}
       cardNames={ [{title: `Canal View Prinsengracht`, id: 3},
         {title: `Nice, cozy, warm big bed apartment`, id: 4}]}
+      onHeaderClick={() => {}}
     />)
     .toJSON();
 

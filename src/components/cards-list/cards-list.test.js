@@ -8,6 +8,7 @@ it(`Render CardsList`, () => {
     .create(<CardsList
       cardNames={ [{title: `Canal View Prinsengracht`, id: 3},
         {title: `Nice, cozy, warm big bed apartment`, id: 4}]}
+      onHeaderClick={() => {}}
     />)
     .toJSON();
 

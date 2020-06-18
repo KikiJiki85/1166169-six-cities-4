@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import CardsList from "../cards-list/cards-list.jsx";
 
-const MainPage = ({placesToStay, cardNames}) => {
+const MainPage = ({placesToStay, cardNames, onHeaderClick}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -97,7 +97,7 @@ const MainPage = ({placesToStay, cardNames}) => {
                */}
 
               </form>
-              <CardsList cardNames = {cardNames}/>
+              <CardsList cardNames = {cardNames} onHeaderClick = {onHeaderClick}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -116,7 +116,8 @@ MainPage.propTypes = {
         title: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
 
 export default MainPage;

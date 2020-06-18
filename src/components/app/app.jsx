@@ -2,9 +2,11 @@ import React from "react";
 import MainPage from "../main-page/main-page.jsx";
 import PropTypes from "prop-types";
 
+const headerClickHandler = () => {};
+
 const App = ({placesToStay, cardNames}) => {
   return (
-    <MainPage placesToStay={placesToStay} cardNames={cardNames}/>
+    <MainPage placesToStay={placesToStay} cardNames={cardNames} onHeaderClick={headerClickHandler}/>
   );
 };
 

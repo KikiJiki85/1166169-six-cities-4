@@ -1,22 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Card = ({title, onHeaderClick}) => {
+const Card = ({offer, onHeaderClick, onCardMouseOver}) => {
+  const {premium, photo, title, price, type, id} = offer;
+
   return (
-    <article className="cities__place-card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article className="cities__place-card place-card" onMouseEnter={() => onCardMouseOver(id)}
+    >
+      {premium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div> : ``}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src= {photo} width="260" height="200" alt= {title}/>
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;120</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
+            <b className="place-card__price-value">&euro;{price}</b>
+            <span className="place-card__price-text">&#47;&nbsp;{type}</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -41,8 +46,16 @@ const Card = ({title, onHeaderClick}) => {
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  onHeaderClick: PropTypes.func.isRequired,
+  onCardMouseOver: PropTypes.func.isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    premium: PropTypes.bool.isRequired
+  })
 };
 
 export default Card;

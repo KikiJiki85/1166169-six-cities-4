@@ -4,20 +4,24 @@ import PropTypes from "prop-types";
 
 const headerClickHandler = () => {};
 
-const App = ({placesToStay, cardNames}) => {
+const App = ({placesToStay, offers}) => {
   return (
-    <MainPage placesToStay={placesToStay} cardNames={cardNames} onHeaderClick={headerClickHandler}/>
+    <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={headerClickHandler}/>
   );
 };
 
 App.propTypes = {
   placesToStay: PropTypes.number.isRequired,
-  cardNames: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired
+        photo: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        premium: PropTypes.bool.isRequired
       })
-  ).isRequired
+  )
 };
 
 export default App;

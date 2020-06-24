@@ -6,14 +6,9 @@ exports[`Render CardsList 1`] = `
 >
   <article
     className="cities__place-card place-card"
+    onMouseEnter={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -21,10 +16,10 @@ exports[`Render CardsList 1`] = `
         href="#"
       >
         <img
-          alt="Place image"
+          alt="Wood and stone place"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
+          src="./img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -41,12 +36,14 @@ exports[`Render CardsList 1`] = `
           <b
             className="place-card__price-value"
           >
-            €120
+            €
+            120
           </b>
           <span
             className="place-card__price-text"
           >
-            / night
+            / 
+            Private room
           </span>
         </div>
         <button
@@ -96,7 +93,7 @@ exports[`Render CardsList 1`] = `
         <a
           href="#"
         >
-          Canal View Prinsengracht
+          Wood and stone place
         </a>
       </h2>
       <p
@@ -108,14 +105,9 @@ exports[`Render CardsList 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
+    onMouseEnter={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -123,10 +115,10 @@ exports[`Render CardsList 1`] = `
         href="#"
       >
         <img
-          alt="Place image"
+          alt="Wood and stone place"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
+          src="./img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -143,12 +135,14 @@ exports[`Render CardsList 1`] = `
           <b
             className="place-card__price-value"
           >
-            €120
+            €
+            120
           </b>
           <span
             className="place-card__price-text"
           >
-            / night
+            / 
+            Private room
           </span>
         </div>
         <button
@@ -198,7 +192,7 @@ exports[`Render CardsList 1`] = `
         <a
           href="#"
         >
-          Nice, cozy, warm big bed apartment
+          Wood and stone place
         </a>
       </h2>
       <p

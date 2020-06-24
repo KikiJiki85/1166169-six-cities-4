@@ -2,12 +2,29 @@ import React from "react";
 import renderer from "react-test-renderer";
 import CardsList from "./cards-list.jsx";
 
+const offers = [
+  {
+    premium: false,
+    photo: `./img/apartment-01.jpg`,
+    price: 120,
+    title: `Wood and stone place`,
+    type: `Private room`,
+    id: 1
+  },
+  {
+    premium: false,
+    photo: `./img/apartment-01.jpg`,
+    price: 120,
+    title: `Wood and stone place`,
+    type: `Private room`,
+    id: 2
+  }
+];
 
 it(`Render CardsList`, () => {
   const tree = renderer
     .create(<CardsList
-      cardNames={ [{title: `Canal View Prinsengracht`, id: 3},
-        {title: `Nice, cozy, warm big bed apartment`, id: 4}]}
+      offers={offers}
       onHeaderClick={() => {}}
     />)
     .toJSON();

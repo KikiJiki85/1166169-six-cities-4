@@ -7,19 +7,29 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should header be pressed`, () => {
-  const onHeaderClick = jest.fn();
+const offer = [
+  {
+    premium: false,
+    photo: `./img/apartment-01.jpg`,
+    price: 120,
+    title: `Wood and stone place`,
+    type: `Private room`,
+    id: 1
+  }
+];
+
+it(`Should mouse point over card`, () => {
+  const onCardMouseOver = jest.fn();
 
   const card = shallow(
       <Card
-        title={`Canal View Prinsengracht`}
-        onHeaderClick={onHeaderClick}
+        offer={offer[0]}
+        onHeaderClick={() => {}}
+        onCardMouseOver={onCardMouseOver}
       />
   );
 
-  const placeCardHeader = card.find(`h2.place-card__name`);
+  card.props().onMouseEnter();
 
-  placeCardHeader.props().onClick();
-
-  expect(onHeaderClick.mock.calls.length).toBe(1);
+  expect(onCardMouseOver.mock.calls[0][0]).toBe(offer[0].id);
 });

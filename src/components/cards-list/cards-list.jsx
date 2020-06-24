@@ -1,29 +1,55 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 
-const CardsList = ({cardNames, onHeaderClick}) => {
-  const elements = cardNames.map((item) => {
+export default class CardsList extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeOffer: null
+    };
+
+    this._onCardMouseOver = this._onCardMouseOver.bind(this);
+  }
+
+  _onCardMouseOver(id) {
+    this.setState({
+      activeOffer: id
+    });
+  }
+
+  render() {
+    const {offers, onHeaderClick} = this.props;
+
     return (
-      <Card title = {item.title} key = {item.id} onHeaderClick={onHeaderClick}/>
+      <div className="cities__places-list places__list tabs__content">
+        {offers.map((offer) => {
+          return (
+            <Card
+              offer = {offer}
+              key = {offer.id}
+              onHeaderClick={onHeaderClick}
+              onCardMouseOver={this._onCardMouseOver}
+            />
+          );
+        })}
+      </div>
     );
-  });
+  }
+}
 
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {elements}
-    </div>
-  );
-};
 CardsList.propTypes = {
-  cardNames: PropTypes.arrayOf(
+  onHeaderClick: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired
+        photo: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        premium: PropTypes.bool.isRequired
       })
-  ).isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  )
 };
-
-export default CardsList;

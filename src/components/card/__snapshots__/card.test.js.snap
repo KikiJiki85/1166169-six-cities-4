@@ -40,7 +40,7 @@ exports[`Render Card 1`] = `
           className="place-card__price-text"
         >
           / 
-          Private room
+          Room
         </span>
       </div>
       <button
@@ -72,7 +72,7 @@ exports[`Render Card 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "100%",
             }
           }
         />
@@ -85,10 +85,10 @@ exports[`Render Card 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         Wood and stone place
       </a>

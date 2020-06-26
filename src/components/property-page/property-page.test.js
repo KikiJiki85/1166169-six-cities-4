@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import CardsList from "./cards-list.jsx";
+import PropertyPage from "./property-page.jsx";
 
 const offers = [
   {
@@ -30,12 +30,27 @@ const offers = [
     id: 2
   },
 ];
+const users = [
+  {
+    id: 1,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    pro: true
+  },
+  {
+    id: 2,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Viktor`,
+    pro: false
+  },
+];
 
-it(`Render CardsList`, () => {
+it(`Render PropertyPage`, () => {
   const tree = renderer
-    .create(<CardsList
+    .create(<PropertyPage
       offers={offers}
-      onHeaderClick={() => {}}
+      offerId = {1}
+      users={users}
     />)
     .toJSON();
 

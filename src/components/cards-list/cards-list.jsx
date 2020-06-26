@@ -46,7 +46,7 @@ CardsList.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
+        photo: PropTypes.arrayOf(PropTypes.string.isRequired),
         price: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         premium: PropTypes.bool.isRequired

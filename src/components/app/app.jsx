@@ -1,14 +1,59 @@
-import React from "react";
-import MainPage from "../main-page/main-page.jsx";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Route, BrowserRouter, Switch} from "react-router-dom";
 
-const headerClickHandler = () => {};
+import MainPage from "../main-page/main-page.jsx";
+import PropertyPage from "../property-page/property-page.jsx";
 
-const App = ({placesToStay, offers}) => {
-  return (
-    <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={headerClickHandler}/>
-  );
-};
+export default class App extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.onHeaderClick = this.onHeaderClick.bind(this);
+    this.state = {
+      offerId: -1
+    };
+  }
+
+  onHeaderClick(id) {
+    this.setState({
+      offerId: id
+    });
+  }
+
+  _renderApp() {
+    const {placesToStay, offers, users} = this.props;
+    const offer = offers.find((it) => it.id === this.state.offerId);
+    const user = users.find((it) => it.id === this.state.offerId);
+
+    if (this.state.offerId === -1) {
+      return (
+        <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={this.onHeaderClick}/>
+      );
+    } else {
+      return (
+        <PropertyPage offer={offer} user={user}/>
+      );
+    }
+  }
+
+  render() {
+    const {offers, users} = this.props;
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/property">
+            <PropertyPage offer={offers[0]} user={users[0]} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   placesToStay: PropTypes.number.isRequired,
@@ -16,12 +61,19 @@ App.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
+        photo: PropTypes.arrayOf(PropTypes.string.isRequired),
         price: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         premium: PropTypes.bool.isRequired
       })
+  ),
+  users: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        avatar: PropTypes.string.isRequired,
+        pro: PropTypes.bool.isRequired
+      })
   )
 };
 
-export default App;

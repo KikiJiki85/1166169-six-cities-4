@@ -31,11 +31,27 @@ const offers = [
   },
 ];
 
+const users = [
+  {
+    id: 1,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    pro: true
+  },
+  {
+    id: 2,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Viktor`,
+    pro: false
+  }
+];
+
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
       placesToStay={222}
       offers={offers}
+      users={users}
     />)
     .toJSON();
 

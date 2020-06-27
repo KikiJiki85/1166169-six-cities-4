@@ -9,13 +9,13 @@ export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._onHeaderClick = this._onHeaderClick.bind(this);
+    this.onHeaderClick = this.onHeaderClick.bind(this);
     this.state = {
       offerId: -1
     };
   }
 
-  _onHeaderClick(id) {
+  onHeaderClick(id) {
     this.setState({
       offerId: id
     });
@@ -23,14 +23,16 @@ export default class App extends PureComponent {
 
   _renderApp() {
     const {placesToStay, offers, users} = this.props;
+    const offer = offers.find((it) => it.id === this.state.offerId);
+    const user = users.find((it) => it.id === this.state.offerId);
 
     if (this.state.offerId === -1) {
       return (
-        <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={this._onHeaderClick}/>
+        <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={this.onHeaderClick}/>
       );
     } else {
       return (
-        <PropertyPage offerId = {this.state.offerId} offers={offers} users={users}/>
+        <PropertyPage offer={offer} user={user}/>
       );
     }
   }
@@ -45,7 +47,7 @@ export default class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/property">
-            <PropertyPage offerId = {2} offers={offers} users={users} />
+            <PropertyPage offer={offers[0]} user={users[0]} />
           </Route>
         </Switch>
       </BrowserRouter>

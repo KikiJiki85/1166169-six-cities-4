@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {getRating} from "../../utils.js";
 
-const PropertyPage = ({offers, users, offerId}) => {
-  const offer = offers.find((it) => it.id === offerId);
+const PropertyPage = ({offer, user}) => {
   const {premium, photo, title, price, type, rating, description, bedrooms, maxGuests, features} = offer;
-
-  const user = users.find((it) => it.id === offerId);
   const {avatar, name, pro} = user;
+
   return (
     <div className="page">
       <header className="header">
@@ -302,27 +300,25 @@ const PropertyPage = ({offers, users, offerId}) => {
 };
 
 PropertyPage.propTypes = {
-  offerId: PropTypes.number,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        photo: PropTypes.arrayOf(PropTypes.string.isRequired),
-        price: PropTypes.number.isRequired,
-        bedrooms: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired,
-        premium: PropTypes.bool.isRequired,
-        features: PropTypes.arrayOf(PropTypes.string.isRequired)
-      })
-  ),
-  users: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        avatar: PropTypes.string.isRequired,
-        pro: PropTypes.bool.isRequired
-      })
-  )
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    photo: PropTypes.arrayOf(PropTypes.string.isRequired),
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    premium: PropTypes.bool.isRequired,
+    features: PropTypes.arrayOf(PropTypes.string.isRequired)
+  }),
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    pro: PropTypes.bool.isRequired
+  })
 };
 
 export default PropertyPage;

@@ -228,7 +228,6 @@ exports[`Render MainPage 1`] = `
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
             >
-              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >

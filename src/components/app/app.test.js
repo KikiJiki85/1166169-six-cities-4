@@ -14,7 +14,8 @@ const offers = [
     maxGuests: 3,
     rating: 4.5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 1
+    id: 1,
+    coordinates: [52.3909553943508, 4.85309666406198]
   },
   {
     premium: true,
@@ -27,7 +28,8 @@ const offers = [
     maxGuests: 2,
     rating: 3.1,
     features: [`Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 2
+    id: 2,
+    coordinates: [52.3909553943508, 4.85309666406198]
   },
 ];
 
@@ -52,7 +54,13 @@ it(`Render App`, () => {
       placesToStay={222}
       offers={offers}
       users={users}
-    />)
+    />,
+    {
+      createNodeMock: () => {
+        return document.createElement(`div`);
+      }
+    }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

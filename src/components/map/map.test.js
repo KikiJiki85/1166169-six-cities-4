@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MainPage from "./main-page.jsx";
+import Main from "./map.jsx";
 
 const offers = [
   {
@@ -33,19 +33,19 @@ const offers = [
   },
 ];
 
-it(`Render MainPage`, () => {
+it(`Render Map`, () => {
   const tree = renderer
-    .create(<MainPage
-      placesToStay={222}
-      offers = {offers}
-      onHeaderClick={() => {}}
-    />,
-    {
-      createNodeMock: () => {
-        return document.createElement(`div`);
-      }
-    }
-
+    .create(
+        <Main
+          city={[52.38333, 4.9]}
+          offers={offers}
+          activeOfferId={1}
+        />,
+        {
+          createNodeMock: () => {
+            return document.createElement(`div`);
+          }
+        }
     )
     .toJSON();
 

@@ -17,7 +17,8 @@ export default [
     maxGuests: 3,
     rating: 4.5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 1
+    id: 1,
+    coordinates: [52.3909553943508, 4.85309666406198]
   },
   {
     premium: true,
@@ -30,7 +31,8 @@ export default [
     maxGuests: 2,
     rating: 3.1,
     features: [`Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 2
+    id: 2,
+    coordinates: [52.369553943508, 4.85309666406198]
   },
   {
     premium: false,
@@ -43,7 +45,8 @@ export default [
     maxGuests: 1,
     rating: 2.2,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`],
-    id: 3
+    id: 3,
+    coordinates: [52.3909553943508, 4.929309666406198]
   },
   {
     premium: false,
@@ -56,6 +59,7 @@ export default [
     maxGuests: 3,
     bedrooms: 5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Baby seat`, `Kitchen`, `Dishwasher`, `Fridge`],
-    id: 4
+    id: 4,
+    coordinates: [52.3809553943508, 4.939309666406198]
   },
 ];

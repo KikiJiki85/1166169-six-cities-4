@@ -1,47 +1,29 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 
-export default class CardsList extends PureComponent {
-  constructor(props) {
-    super(props);
+const CardsList = (props) => {
 
-    this.state = {
-      activeOffer: null
-    };
+  const {offers, isNearPlaces = false, onHeaderClick} = props;
 
-    this._onCardMouseOver = this._onCardMouseOver.bind(this);
-  }
-
-  _onCardMouseOver(id) {
-    this.setState({
-      activeOffer: id
-    });
-  }
-
-  render() {
-    const {offers, onHeaderClick} = this.props;
-
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => {
-          return (
-            <Card
-              offer = {offer}
-              key = {offer.id}
-              onHeaderClick={onHeaderClick}
-              onCardMouseOver={this._onCardMouseOver}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    offers.map((offer) => {
+      return (
+        <Card
+          offer = {offer}
+          key = {offer.id}
+          isNearPlaces={isNearPlaces}
+          onHeaderClick={onHeaderClick}
+        />
+      );
+    })
+  );
+};
 
 CardsList.propTypes = {
   onHeaderClick: PropTypes.func.isRequired,
+  isNearPlaces: PropTypes.bool,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -53,3 +35,5 @@ CardsList.propTypes = {
       })
   )
 };
+
+export default CardsList;

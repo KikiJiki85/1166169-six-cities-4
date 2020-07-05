@@ -18,7 +18,23 @@ export default [
     rating: 4.5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     id: 1,
-    coordinates: [52.3909553943508, 4.85309666406198]
+    coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
   },
   {
     premium: true,
@@ -32,7 +48,23 @@ export default [
     rating: 3.1,
     features: [`Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     id: 2,
-    coordinates: [52.369553943508, 4.85309666406198]
+    coordinates: [52.369553943508, 4.85309666406198],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
   },
   {
     premium: false,
@@ -46,7 +78,23 @@ export default [
     rating: 2.2,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`],
     id: 3,
-    coordinates: [52.3909553943508, 4.929309666406198]
+    coordinates: [52.3909553943508, 4.929309666406198],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
   },
   {
     premium: false,
@@ -60,6 +108,22 @@ export default [
     bedrooms: 5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Baby seat`, `Kitchen`, `Dishwasher`, `Fridge`],
     id: 4,
-    coordinates: [52.3809553943508, 4.939309666406198]
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
   },
 ];

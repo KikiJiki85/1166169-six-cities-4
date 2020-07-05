@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PropertyPage from "./property-page.jsx";
+import ReviewsItem from "./reviews-item.jsx";
 
 const TYPES = {
   apartment: `Apartment`,
@@ -159,19 +159,14 @@ const users = [
   },
 ];
 
-it(`Render PropertyPage`, () => {
+it(`Render ReviewsItem`, () => {
   const tree = renderer
-    .create(<PropertyPage
-      offerId = {1}
-      offers={offers}
-      users={users}
-      onHeaderClick={() =>{}}
-    />,
-    {
-      createNodeMock: () => {
-        return document.createElement(`div`);
-      }
-    }
+    .create(
+        <ReviewsItem
+          key={offers[0].reviews[0].id}
+          review={offers[0].reviews[0]}
+          user={users[0]}
+        />
     )
     .toJSON();
 

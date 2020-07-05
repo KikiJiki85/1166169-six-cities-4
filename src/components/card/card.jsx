@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {getRating} from "../../utils.js";
 
-const Card = ({offer, onHeaderClick, onCardMouseOver}) => {
+const Card = ({offer, onHeaderClick}) => {
   const {premium, photo, title, price, type, id, rating} = offer;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => onCardMouseOver(id)}
+    <article className="cities__place-card place-card"
     >
       {premium &&
       <div className="place-card__mark">
@@ -48,7 +48,6 @@ const Card = ({offer, onHeaderClick, onCardMouseOver}) => {
 
 Card.propTypes = {
   onHeaderClick: PropTypes.func.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

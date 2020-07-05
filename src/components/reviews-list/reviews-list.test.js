@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PropertyPage from "./property-page.jsx";
+import ReviewsList from "./reviews-list.jsx";
 
 const TYPES = {
   apartment: `Apartment`,
@@ -159,19 +159,14 @@ const users = [
   },
 ];
 
-it(`Render PropertyPage`, () => {
+
+it(`Render ReviewList`, () => {
   const tree = renderer
-    .create(<PropertyPage
-      offerId = {1}
-      offers={offers}
-      users={users}
-      onHeaderClick={() =>{}}
-    />,
-    {
-      createNodeMock: () => {
-        return document.createElement(`div`);
-      }
-    }
+    .create(
+        <ReviewsList
+          reviews={offers[0].reviews}
+          users={users}
+        />
     )
     .toJSON();
 

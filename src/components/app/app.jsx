@@ -32,7 +32,7 @@ export default class App extends PureComponent {
       );
     } else {
       return (
-        <PropertyPage offer={offer} user={user}/>
+        <PropertyPage offer={offer} user={user} users={users}/>
       );
     }
   }

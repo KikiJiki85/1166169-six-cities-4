@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {getRating} from "../../utils.js";
+import ReviewsList from "../reviews-list/reviews-list.jsx";
 
-const PropertyPage = ({offer, user}) => {
-  const {premium, photo, title, price, type, rating, description, bedrooms, maxGuests, features} = offer;
+const PropertyPage = ({offer, user, users}) => {
+  const {premium, photo, title, price, type, rating, description, bedrooms, maxGuests, features, reviews} = offer;
   const {avatar, name, pro} = user;
 
   return (
@@ -116,31 +117,12 @@ const PropertyPage = ({offer, user}) => {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                      </div>
-                      <span className="reviews__user-name">
-                        Max
-                      </span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{width: `80%`}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                      </p>
-                      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                    </div>
-                  </li>
-                </ul>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                <ReviewsList
+                  reviews={reviews}
+                  users={users}
+                />
+
                 <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">
@@ -318,7 +300,7 @@ PropertyPage.propTypes = {
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     pro: PropTypes.bool.isRequired
-  })
+  }),
 };
 
 export default PropertyPage;

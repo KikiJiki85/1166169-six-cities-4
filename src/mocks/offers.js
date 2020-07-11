@@ -149,7 +149,7 @@ export default [
       coordinates: [48.855931, 2.350962]
     },
     title: `Not bad!`,
-    pictures: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
     price: 999,
     type: TYPES.hotel,
     rating: 3.2,
@@ -159,9 +159,8 @@ export default [
     descriptions: [
       `An independent House.`
     ],
-    guests: 1,
+    maxGuests: 1,
     features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    hostId: 4,
     coordinates: [48.854082, 2.350379],
     reviews: [
       {
@@ -187,7 +186,7 @@ export default [
       coordinates: [48.855931, 2.350962]
     },
     title: `So good!`,
-    pictures: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
     price: 156,
     type: TYPES.apartment,
     rating: 3.2,
@@ -197,9 +196,8 @@ export default [
     descriptions: [
       `An independent House.`
     ],
-    guests: 1,
+    maxGuests: 1,
     features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    hostId: 4,
     coordinates: [48.856906, 2.353950],
     reviews: [
       {
@@ -225,7 +223,7 @@ export default [
       coordinates: [53.547699, 9.996888]
     },
     title: `Not bad!`,
-    pictures: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
     price: 50,
     type: TYPES.apartment,
     rating: 3.8,
@@ -235,9 +233,8 @@ export default [
     descriptions: [
       `An independent House.`
     ],
-    guests: 1,
+    maxGuests: 1,
     features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    hostId: 3,
     coordinates: [53.548738, 9.996824],
     reviews: [
       {

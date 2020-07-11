@@ -4,8 +4,9 @@ import {Route, BrowserRouter, Switch} from "react-router-dom";
 
 import MainPage from "../main-page/main-page.jsx";
 import PropertyPage from "../property-page/property-page.jsx";
+import {connect} from "react-redux";
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -22,11 +23,13 @@ export default class App extends PureComponent {
   }
 
   _renderApp() {
-    const {placesToStay, offers, users} = this.props;
+    const {offers, users} = this.props;
 
     if (this.state.offerId === -1) {
       return (
-        <MainPage placesToStay={placesToStay} offers={offers} onHeaderClick={this.onHeaderClick}/>
+        <MainPage
+          onHeaderClick={this.onHeaderClick}
+        />
       );
     } else {
       return (
@@ -54,7 +57,7 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  placesToStay: PropTypes.number.isRequired,
+  users: PropTypes.array.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -64,14 +67,15 @@ App.propTypes = {
         type: PropTypes.string.isRequired,
         premium: PropTypes.bool.isRequired
       })
-  ),
-  users: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        avatar: PropTypes.string.isRequired,
-        pro: PropTypes.bool.isRequired
-      })
   )
 };
 
+const mapStateToProps = (state) => {
+  return {
+    offers: state.offers,
+    users: state.users
+  };
+};
+
+export {App};
+export default connect(mapStateToProps, null)(App);

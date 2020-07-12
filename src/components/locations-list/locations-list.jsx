@@ -11,7 +11,12 @@ const LocationsList = (props) => {
       {locations.map((it) => {
         return (
           <li key={it} className="locations__item">
-            <a onClick={(evt) => onLocationButtonClick(evt, it)} className={`locations__item-link tabs__item${it === city ? ` tabs__item--active` : ``}`} href="#">
+            <a
+              onClick={(evt) => {
+                evt.preventDefault();
+                onLocationButtonClick(it);
+              }}
+              className={`locations__item-link tabs__item${it === city ? ` tabs__item--active` : ``}`} href="#">
               <span>{it}</span>
             </a>
           </li>
@@ -36,8 +41,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationButtonClick(evt, city) {
-    evt.preventDefault();
+  onLocationButtonClick(city) {
     dispatch(ActionCreator.changeCity(city));
   }
 });

@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 const TYPES = {
   apartment: `Apartment`,
@@ -11,6 +13,10 @@ const TYPES = {
 
 const offers = [
   {
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9]
+    },
     premium: false,
     photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 120,
@@ -41,6 +47,10 @@ const offers = [
     ]
   },
   {
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9]
+    },
     premium: true,
     photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 80,
@@ -71,6 +81,10 @@ const offers = [
     ]
   },
   {
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9]
+    },
     premium: false,
     photo: [`./img/apartment-03.jpg`, `./img/apartment-02.jpg`, `./img/room.jpg`],
     price: 122,
@@ -101,6 +115,10 @@ const offers = [
     ]
   },
   {
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9]
+    },
     premium: false,
     photo: [`./img/room.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`],
     price: 130,
@@ -127,6 +145,110 @@ const offers = [
         text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
         rating: 3.2,
         date: `2019-04-25`
+      }
+    ]
+  },
+  {
+    id: 5,
+    city: {
+      name: `Paris`,
+      coordinates: [48.855931, 2.350962]
+    },
+    title: `Not bad!`,
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    price: 999,
+    type: TYPES.hotel,
+    rating: 3.2,
+    premium: false,
+    favorite: false,
+    bedrooms: 1,
+    descriptions: [
+      `An independent House.`
+    ],
+    maxGuests: 1,
+    features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
+    coordinates: [48.854082, 2.350379],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Very good`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
+  },
+  {
+    id: 6,
+    city: {
+      name: `Paris`,
+      coordinates: [48.855931, 2.350962]
+    },
+    title: `So good!`,
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    price: 156,
+    type: TYPES.apartment,
+    rating: 3.2,
+    premium: true,
+    favorite: false,
+    bedrooms: 1,
+    descriptions: [
+      `An independent House.`
+    ],
+    maxGuests: 1,
+    features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
+    coordinates: [48.856906, 2.353950],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 4.3,
+        date: `2019-04-24`
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: `Very good`,
+        rating: 3.2,
+        date: `2019-04-25`
+      }
+    ]
+  },
+  {
+    id: 7,
+    city: {
+      name: `Hamburg`,
+      coordinates: [53.547699, 9.996888]
+    },
+    title: `Not bad!`,
+    photo: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    price: 50,
+    type: TYPES.apartment,
+    rating: 3.8,
+    premium: false,
+    favorite: false,
+    bedrooms: 1,
+    descriptions: [
+      `An independent House.`
+    ],
+    maxGuests: 1,
+    features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
+    coordinates: [53.548738, 9.996824],
+    reviews: [
+      {
+        id: 1,
+        userId: 2,
+        text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 4.0,
+        date: `2020-04-24`
       }
     ]
   },
@@ -157,20 +279,46 @@ const users = [
     name: `Petya`,
     pro: false
   },
+  {
+    id: 5,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Volodya`,
+    pro: false
+  },
+  {
+    id: 6,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Tanos`,
+    pro: false
+  },
+  {
+    id: 7,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Aleksander`,
+    pro: false
+  },
 ];
 
+const mockStore = configureStore([]);
+
 it(`Render App`, () => {
+  const store = mockStore({
+    offers,
+    users,
+    city: offers[0].city.name,
+    locations: Array.from(new Set(offers.map((it) => it.city.name)))
+  });
+
   const tree = renderer
-    .create(<App
-      placesToStay={222}
-      offers={offers}
-      users={users}
-    />,
-    {
-      createNodeMock: () => {
-        return document.createElement(`div`);
-      }
-    }
+    .create(
+        <Provider store={store}>
+          <App/>
+        </Provider>,
+        {
+          createNodeMock: () => {
+            return document.createElement(`div`);
+          }
+        }
     )
     .toJSON();
 

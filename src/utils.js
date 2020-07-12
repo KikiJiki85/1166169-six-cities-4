@@ -4,4 +4,8 @@ const getRating = (num) => {
   return Math.round(num) * MULTIPLIER;
 };
 
-export {getRating};
+const extend = (x, y) => {
+  return Object.assign({}, x, y);
+};
+
+export {getRating, extend};

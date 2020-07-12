@@ -23,4 +23,22 @@ export default [
     name: `Petya`,
     pro: false
   },
+  {
+    id: 5,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Volodya`,
+    pro: false
+  },
+  {
+    id: 6,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Tanos`,
+    pro: false
+  },
+  {
+    id: 7,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Aleksander`,
+    pro: false
+  },
 ];

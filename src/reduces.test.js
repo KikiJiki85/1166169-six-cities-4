@@ -1,15 +1,11 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
-import MainPage from "./main-page.jsx";
-
+import {reducer, ActionCreator, ActionType} from "./reducer.js";
 const TYPES = {
   apartment: `Apartment`,
   room: `Private Room`,
   house: `House`,
   hotel: `Hotel`
 };
+
 const offers = [
   {
     city: {
@@ -253,32 +249,84 @@ const offers = [
   },
 ];
 
-const mockStore = configureStore([]);
+const users = [
+  {
+    id: 1,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    pro: true
+  },
+  {
+    id: 2,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Viktor`,
+    pro: false
+  },
+  {
+    id: 3,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Alex`,
+    pro: false
+  },
+  {
+    id: 4,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Petya`,
+    pro: false
+  },
+  {
+    id: 5,
+    avatar: `./img/avatar-max.jpg`,
+    name: `Volodya`,
+    pro: false
+  },
+  {
+    id: 6,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Tanos`,
+    pro: false
+  },
+  {
+    id: 7,
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Aleksander`,
+    pro: false
+  },
+];
 
-it(`Render MainPage`, () => {
-  const store = mockStore({
-    offers,
+const locations = Array.from(new Set(offers.map((it) => it.city.name)));
+
+it(`Reducer without additional parameters should return initial state`, () => {
+  expect(reducer(void 0, {})).toEqual({
     city: offers[0].city.name,
-    locations: Array.from(new Set(offers.map((it) => it.city.name)))
+    offers,
+    locations,
+    users
   });
+});
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <MainPage
-            city={`Amsterdam`}
-            activeOffers = {offers}
-            onHeaderClick={() => {}}
-          />
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return document.createElement(`div`);
-          }
-        }
+it(`Reducer should change city name by a given value`, () => {
+  expect(reducer({
+    city: offers[0].city.name,
+    offers,
+    locations,
+    users
+  }, {
+    type: ActionType.CHANGE_CITY,
+    payload: `Paris`,
+  })).toEqual({
+    city: `Paris`,
+    offers,
+    locations,
+    users
+  });
+});
 
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for incrementing step returns correct action`, () => {
+    expect(ActionCreator.changeCity(`Paris`)).toEqual({
+      type: ActionType.CHANGE_CITY,
+      payload: `Paris`,
+    });
+  });
 });

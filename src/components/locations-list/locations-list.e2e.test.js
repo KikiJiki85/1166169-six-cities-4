@@ -20,8 +20,11 @@ it(`Should LocationsList item to be pressed and return proper value`, () => {
 
   const locationButton = locationList.find(`a.locations__item-link`).at(2);
 
-  locationButton.props().onClick();
+  locationButton.simulate(`click`, {
+    preventDefault: () => {}
+  });
+
 
   expect(onLocationButtonClick.mock.calls.length).toBe(1);
-  expect(onLocationButtonClick.mock.calls[0][1]).toBe(`London`);
+  expect(onLocationButtonClick.mock.calls[0][0]).toBe(`London`);
 });

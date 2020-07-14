@@ -1,4 +1,6 @@
 import {reducer, ActionCreator, ActionType} from "./reducer.js";
+import {SortTypes} from "./const.js";
+
 const TYPES = {
   apartment: `Apartment`,
   room: `Private Room`,
@@ -13,6 +15,7 @@ const offers = [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 120,
     title: `Wood and stone place`,
@@ -47,6 +50,7 @@ const offers = [
       coordinates: [52.38333, 4.9]
     },
     premium: true,
+    favorite: true,
     photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 80,
     title: `Beautiful & luxurious apartment at great location`,
@@ -81,6 +85,7 @@ const offers = [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/apartment-03.jpg`, `./img/apartment-02.jpg`, `./img/room.jpg`],
     price: 122,
     title: `Nice, cozy, warm big bed apartment`,
@@ -115,6 +120,7 @@ const offers = [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/room.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`],
     price: 130,
     rating: 3.7,
@@ -300,8 +306,10 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     city: offers[0].city.name,
     offers,
-    locations,
-    users
+    locations: Array.from(new Set(offers.map((it) => it.city.name))),
+    users,
+    sortType: SortTypes.POPULAR,
+    activeOfferId: null
   });
 });
 
@@ -322,11 +330,61 @@ it(`Reducer should change city name by a given value`, () => {
   });
 });
 
+it(`Reducer should change sort type by a given value`, () => {
+  expect(reducer({
+    offers,
+    locations,
+    users,
+    sortType: SortTypes.POPULAR
+  }, {
+    type: ActionType.CHANGE_SORT,
+    payload: SortTypes.PRICE_HIGH_LOW,
+  })).toEqual({
+    offers,
+    locations,
+    users,
+    sortType: SortTypes.PRICE_HIGH_LOW
+  });
+});
+
+it(`Reducer should change active offer id by a given value`, () => {
+  expect(reducer({
+    offers,
+    locations,
+    users,
+    sortType: SortTypes.POPULAR,
+    activeOfferId: null
+  }, {
+    type: ActionType.CHANGE_ACTIVE_OFFER_ID,
+    payload: 2,
+  })).toEqual({
+    offers,
+    locations,
+    users,
+    sortType: SortTypes.POPULAR,
+    activeOfferId: 2,
+  });
+});
+
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for incrementing step returns correct action`, () => {
+  it(`Action creator for changing city returns correct action`, () => {
     expect(ActionCreator.changeCity(`Paris`)).toEqual({
       type: ActionType.CHANGE_CITY,
       payload: `Paris`,
+    });
+  });
+
+  it(`Action creator for changing sort returns correct action`, () => {
+    expect(ActionCreator.changeSort(SortTypes.TOP_RATED_FIRST)).toEqual({
+      type: ActionType.CHANGE_SORT,
+      payload: SortTypes.TOP_RATED_FIRST,
+    });
+  });
+
+  it(`Action creator for changing offer id returns correct action`, () => {
+    expect(ActionCreator.changeActiveOfferId(3)).toEqual({
+      type: ActionType.CHANGE_ACTIVE_OFFER_ID,
+      payload: 3,
     });
   });
 });

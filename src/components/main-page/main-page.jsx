@@ -48,7 +48,9 @@ const MainPage = ({city, onHeaderClick, activeOffers, activeOfferId}) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{activeOffers.length} places to stay in {city}</b>
               <PlacesSorting />
-              <CardsList offers = {activeOffers} onHeaderClick = {onHeaderClick}/>
+              <div className="cities__places-list places__list tabs__content">
+                <CardsList offers = {activeOffers} onHeaderClick = {onHeaderClick}/>
+              </div>
             </section>
             <div className="cities__right-section">
               <Map city={activeOffers[0].city.coordinates} offers={activeOffers} activeOfferId={activeOfferId} className={`cities__map map`}/>

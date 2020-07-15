@@ -1,3 +1,5 @@
+import {SortTypes} from "./const.js";
+
 const MULTIPLIER = 20;
 
 const getRating = (num) => {
@@ -8,4 +10,25 @@ const extend = (x, y) => {
   return Object.assign({}, x, y);
 };
 
-export {getRating, extend};
+const sortOffers = (offers, sortType) => {
+  let sortedOffers = [];
+
+  switch (sortType) {
+    case SortTypes.POPULAR:
+      sortedOffers = offers;
+      break;
+    case SortTypes.PRICE_LOW_HIGH:
+      sortedOffers = offers.slice().sort((a, b) => a.price - b.price);
+      break;
+    case SortTypes.PRICE_HIGH_LOW:
+      sortedOffers = offers.slice().sort((a, b) => b.price - a.price);
+      break;
+    case SortTypes.TOP_RATED_FIRST:
+      sortedOffers = offers.slice().sort((a, b) => b.rating - a.rating);
+      break;
+  }
+
+  return sortedOffers;
+};
+
+export {getRating, extend, sortOffers};

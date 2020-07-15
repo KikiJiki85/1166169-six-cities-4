@@ -4,6 +4,8 @@ exports[`Render CardsList 1`] = `
 Array [
   <article
     className="cities__place-card place-card"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -39,7 +41,7 @@ Array [
             className="place-card__price-text"
           >
             / 
-            Room
+            Private Room
           </span>
         </div>
         <button
@@ -101,6 +103,8 @@ Array [
   </article>,
   <article
     className="cities__place-card place-card"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -147,7 +151,7 @@ Array [
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
           type="button"
         >
           <svg

@@ -12,6 +12,7 @@ export default [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 120,
     title: `Wood and stone place`,
@@ -46,6 +47,7 @@ export default [
       coordinates: [52.38333, 4.9]
     },
     premium: true,
+    favorite: true,
     photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 80,
     title: `Beautiful & luxurious apartment at great location`,
@@ -80,6 +82,7 @@ export default [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/apartment-03.jpg`, `./img/apartment-02.jpg`, `./img/room.jpg`],
     price: 122,
     title: `Nice, cozy, warm big bed apartment`,
@@ -114,6 +117,7 @@ export default [
       coordinates: [52.38333, 4.9]
     },
     premium: false,
+    favorite: false,
     photo: [`./img/room.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`],
     price: 130,
     rating: 3.7,

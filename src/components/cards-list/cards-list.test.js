@@ -102,6 +102,7 @@ it(`Render CardsList`, () => {
           <CardsList
             offers={offers}
             onHeaderClick={() => {}}
+            onActiveItemChange={() => {}}
           />
         </Provider>
     )

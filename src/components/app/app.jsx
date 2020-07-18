@@ -1,10 +1,13 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, BrowserRouter, Switch} from "react-router-dom";
+import {connect} from "react-redux";
 
 import MainPage from "../main-page/main-page.jsx";
 import PropertyPage from "../property-page/property-page.jsx";
-import {connect} from "react-redux";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const MainWrapped = withActiveItem(MainPage);
 
 class App extends PureComponent {
   constructor(props) {
@@ -27,7 +30,8 @@ class App extends PureComponent {
 
     if (this.state.offerId === -1) {
       return (
-        <MainPage
+        <MainWrapped
+          initActiveItemId={-1}
           onHeaderClick={this.onHeaderClick}
         />
       );

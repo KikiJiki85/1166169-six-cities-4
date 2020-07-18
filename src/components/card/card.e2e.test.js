@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {Card} from "./card.jsx";
+import Card from "./card.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -87,34 +87,53 @@ const offers = [
   },
 ];
 
-it(`Should mouse point over card, header pressed`, () => {
-  const onHeaderClick = jest.fn();
-  const onCardMouseEnter = jest.fn();
-  const onCardMouseLeave = jest.fn();
+describe(`Card mouse input testing`, () => {
+  it(`Should card header to be pressed, mouse enter registered, value is correct`, () => {
+    const onActiveItemChange = jest.fn();
+    const onHeaderClick = jest.fn();
 
-  const card = shallow(
-      <Card
-        offer={offers[0]}
-        isNearPlaces={false}
-        key={offers[0].id}
-        onHeaderClick={onHeaderClick}
-        onCardMouseEnter={onCardMouseEnter}
-        onCardMouseLeave={onCardMouseLeave}
-      />
-  );
+    const card = shallow(
+        <Card
+          key={offers[0].id}
+          offer={offers[0]}
+          isNearPlaces={false}
+          onHeaderClick={onHeaderClick}
+          onActiveItemChange={onActiveItemChange}
+        />
+    );
 
-  const cardHeaderClick = card.find(`.place-card__name a`);
+    const placeCardHeader = card.find(`.place-card__name a`);
 
-  cardHeaderClick.props().onClick();
+    placeCardHeader.props().onClick();
+    card.props().onMouseEnter();
 
-  card.props().onMouseEnter();
-  card.props().onMouseLeave();
+    expect(onActiveItemChange.mock.calls.length).toBe(1);
+    expect(onActiveItemChange.mock.calls[0][0]).toBe(offers[0].id);
 
-  expect(onCardMouseEnter.mock.calls.length).toBe(1);
-  expect(onCardMouseEnter.mock.calls[0][0]).toBe(offers[0].id);
+    expect(onHeaderClick.mock.calls.length).toBe(1);
+    expect(onHeaderClick.mock.calls[0][0]).toBe(offers[0].id);
+  });
 
-  expect(onCardMouseLeave.mock.calls.length).toBe(1);
+  it(`Should mouse leave registered, value is correct`, () => {
+    const onActiveItemChange = jest.fn();
+    const onHeaderClick = jest.fn();
 
-  expect(onHeaderClick.mock.calls.length).toBe(1);
-  expect(onHeaderClick.mock.calls[0][0]).toBe(offers[0].id);
+    const card = shallow(
+        <Card
+          key={offers[0].id}
+          offer={offers[0]}
+          isNearPlaces={false}
+          onHeaderClick={onHeaderClick}
+          onActiveItemChange={onActiveItemChange}
+        />
+    );
+
+    const placeCardHeader = card.find(`.place-card__name a`);
+
+    placeCardHeader.props().onClick();
+    card.props().onMouseLeave();
+
+    expect(onActiveItemChange.mock.calls.length).toBe(1);
+    expect(onActiveItemChange.mock.calls[0][0]).toBe(-1);
+  });
 });

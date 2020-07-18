@@ -7,7 +7,7 @@ const Card = ({offer, isNearPlaces, onHeaderClick, onActiveItemChange}) => {
 
   return (
     <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)}
-    className={`${isNearPlaces ? `near-places__card` : `cities__place-card`} place-card`}
+      className={`${isNearPlaces ? `near-places__card` : `cities__place-card`} place-card`}
     >
       {premium &&
       <div className="place-card__mark">

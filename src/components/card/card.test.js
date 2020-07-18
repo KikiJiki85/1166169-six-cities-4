@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Card} from "./card.jsx";
+import Card from "./card.jsx";
 
 const TYPES = {
   apartment: `Apartment`,
@@ -90,8 +90,7 @@ it(`Render Card`, () => {
           offer={offers[0]}
           isNearPlaces={false}
           onHeaderClick={() => {}}
-          onCardMouseEnter={() => {}}
-          onCardMouseLeave={() => {}}
+          onActiveItemChange={() => {}}
         />)
     .toJSON();
 

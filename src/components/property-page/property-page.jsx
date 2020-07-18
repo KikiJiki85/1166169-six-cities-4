@@ -193,6 +193,7 @@ const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
                 offers={offers}
                 isNearPlaces={true}
                 onHeaderClick={onHeaderClick}
+                onActiveItemChange={() => {}}
               />
             </div>
           </section>

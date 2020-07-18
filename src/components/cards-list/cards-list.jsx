@@ -5,7 +5,7 @@ import Card from "../card/card.jsx";
 
 const CardsList = (props) => {
 
-  const {offers, isNearPlaces = false, onHeaderClick} = props;
+  const {offers, isNearPlaces = false, onHeaderClick, onActiveItemChange} = props;
 
   return (
     offers.map((offer) => {
@@ -15,6 +15,7 @@ const CardsList = (props) => {
           key = {offer.id}
           isNearPlaces={isNearPlaces}
           onHeaderClick={onHeaderClick}
+          onActiveItemChange={onActiveItemChange}
         />
       );
     })
@@ -23,6 +24,7 @@ const CardsList = (props) => {
 
 CardsList.propTypes = {
   onHeaderClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
   isNearPlaces: PropTypes.bool,
   offers: PropTypes.arrayOf(
       PropTypes.shape({

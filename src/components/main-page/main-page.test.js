@@ -101,6 +101,8 @@ it(`Render MainPage`, () => {
             city={`Amsterdam`}
             activeOffers = {offers}
             onHeaderClick={() => {}}
+            activeItemId = {-1}
+            onActiveItemChange={() => {}}
           />
         </Provider>,
         {

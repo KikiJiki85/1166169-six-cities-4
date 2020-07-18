@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
 import {getRating} from "../../utils.js";
 
-const Card = ({offer, isNearPlaces, onHeaderClick, onCardMouseEnter, onCardMouseLeave}) => {
+const Card = ({offer, isNearPlaces, onHeaderClick, onActiveItemChange}) => {
   const {premium, favorite, photo, title, price, type, id, rating} = offer;
 
   return (
-    <article onMouseEnter={() => onCardMouseEnter(offer.id)} onMouseLeave={onCardMouseLeave}
-      className="cities__place-card place-card"
+    <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)}
+      className={`${isNearPlaces ? `near-places__card` : `cities__place-card`} place-card`}
     >
       {premium &&
       <div className="place-card__mark">
@@ -61,18 +59,8 @@ Card.propTypes = {
     premium: PropTypes.bool.isRequired,
     favorite: PropTypes.bool.isRequired
   }),
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
 };
-const mapDispatchToProps = (dispatch) => ({
-  onCardMouseEnter(id) {
-    dispatch(ActionCreator.changeActiveOfferId(id));
-  },
-  onCardMouseLeave() {
-    dispatch(ActionCreator.changeActiveOfferId(null));
-  }
-});
 
-export {Card};
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;

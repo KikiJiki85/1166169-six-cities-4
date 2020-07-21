@@ -50,7 +50,7 @@ const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, o
           </section>
         </div>
         <div className="cities">
-        {activeOffers.length
+          {activeOffers.length
             ?
             <Places
               activeOffers={activeOffers}

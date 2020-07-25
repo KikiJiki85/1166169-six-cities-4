@@ -42,7 +42,7 @@ const PropertyPage = ({offers, offerId, onHeaderClick}) => {
           <div className="property__gallery-container container">
 
             <div className="property__gallery">
-            {photo.slice(0, 6).map((picture, i) => {
+              {photo.slice(0, 6).map((picture, i) => {
                 return (
                   <div className="property__image-wrapper" key={i}>
                     <img className="property__image" src={picture} alt="Photo studio" />
@@ -63,7 +63,7 @@ const PropertyPage = ({offers, offerId, onHeaderClick}) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button className={`property__bookmark-button button${favorite ? ` property__bookmark-button--active` : ``}`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -85,11 +85,11 @@ const PropertyPage = ({offers, offerId, onHeaderClick}) => {
                   {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxGuests} adults
+                  Max {guests} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{price}</b>
+                <b className="property__price-value">&euro;120</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">

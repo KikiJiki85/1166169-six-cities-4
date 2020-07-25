@@ -2,11 +2,14 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, BrowserRouter, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/app/app.js";
 
 import MainPage from "../main-page/main-page.jsx";
 import PropertyPage from "../property-page/property-page.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+import {getOffers} from "../../reducer/data/selectors.js";
+import {getActiveOfferId} from "../../reducer/app/selectors.js";
 
 const MainWrapped = withActiveItem(MainPage);
 
@@ -70,9 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
   return {
-    offers: state.offers,
-    users: state.users,
-    offerId: state.activeOfferId,
+    offers: getOffers(state),
+    offerId: getActiveOfferId(state),
   };
 };
 

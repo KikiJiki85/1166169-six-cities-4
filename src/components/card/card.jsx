@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {getRating} from "../../utils.js";
 
 const Card = ({offer, isNearPlaces, onHeaderClick, onActiveItemChange}) => {
-  const {premium, favorite, photo, title, price, type, id, rating} = offer;
+  const {premium, favorite, previewImage, title, price, type, id, rating} = offer;
 
   return (
     <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)}
@@ -16,7 +16,7 @@ const Card = ({offer, isNearPlaces, onHeaderClick, onActiveItemChange}) => {
 
       <div className={`${isNearPlaces ? `near-places__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src= {photo[0]} width="260" height="200" alt= {title}/>
+          <img className="place-card__image" src= {previewImage} width="260" height="200" alt= {title}/>
         </a>
       </div>
       <div className="place-card__info">
@@ -52,7 +52,7 @@ Card.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    photo: PropTypes.arrayOf(PropTypes.string.isRequired),
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,

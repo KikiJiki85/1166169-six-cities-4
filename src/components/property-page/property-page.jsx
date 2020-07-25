@@ -5,13 +5,12 @@ import CardsList from "../cards-list/cards-list.jsx";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 
-const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
+const PropertyPage = ({offers, offerId, onHeaderClick}) => {
 
   const offer = offers.find((it) => it.id === offerId);
-  const user = users.find((it) => it.id === offerId);
 
-  const {premium, photo, title, price, type, rating, description, bedrooms, maxGuests, features, reviews} = offer;
-  const {avatar, name, pro} = user;
+  const {photo, premium, favorite, title, rating, type, bedrooms, guests, features, description, reviews = [], host, location} = offer;
+  const {avatar, name, pro} = host;
 
   return (
     <div className="page">
@@ -43,7 +42,7 @@ const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
           <div className="property__gallery-container container">
 
             <div className="property__gallery">
-              {photo.map((picture, i) => {
+            {photo.slice(0, 6).map((picture, i) => {
                 return (
                   <div className="property__image-wrapper" key={i}>
                     <img className="property__image" src={picture} alt="Photo studio" />
@@ -126,7 +125,6 @@ const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ReviewsList
                   reviews={reviews}
-                  users={users}
                 />
 
                 <form className="reviews__form form" action="#" method="post">
@@ -179,10 +177,11 @@ const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
             </div>
           </div>
           <Map
-            city={[52.38333, 4.9]}
+            city={location.coordinates}
             offers={offers}
             activeOfferId={offerId}
             className={`property__map map`}
+            zoom={location.zoom}
           />
         </section>
         <div className="container">
@@ -204,7 +203,6 @@ const PropertyPage = ({offers, users, offerId, onHeaderClick}) => {
 };
 
 PropertyPage.propTypes = {
-  users: PropTypes.array.isRequired,
   offers: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   offerId: PropTypes.number

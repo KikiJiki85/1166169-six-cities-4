@@ -13,7 +13,7 @@ const MainWrapped = withActiveItem(MainPage);
 class App extends PureComponent {
 
   _renderApp() {
-    const {offers, users, onChangeActiveOfferId, offerId} = this.props;
+    const {offers, onChangeActiveOfferId, offerId} = this.props;
 
     if (offerId === -1) {
       return (
@@ -24,13 +24,13 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <PropertyPage offers={offers} users={users} offerId={offerId} onHeaderClick={onChangeActiveOfferId}/>
+        <PropertyPage offers={offers} offerId={offerId} onHeaderClick={onChangeActiveOfferId}/>
       );
     }
   }
 
   render() {
-    const {offers, users, onChangeActiveOfferId} = this.props;
+    const {offers, onChangeActiveOfferId} = this.props;
 
     return (
       <BrowserRouter>
@@ -39,7 +39,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/property">
-            <PropertyPage offers={offers} users={users} offerId={1} onHeaderClick={onChangeActiveOfferId}/>
+            <PropertyPage offers={offers} offerId={1} onHeaderClick={onChangeActiveOfferId}/>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -48,7 +48,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  users: PropTypes.array.isRequired,
   onChangeActiveOfferId: PropTypes.func.isRequired,
   offerId: PropTypes.any.isRequired,
   offers: PropTypes.arrayOf(

@@ -89,12 +89,11 @@ it(`Render Places`, () => {
     .create(
         <Provider store={store}>
           <Places
-            activeOffers={offers}
+            filteredOffers={offers}
             onHeaderClick={() => {}}
             onActiveItemChange={() => {}}
             activeItemId={1}
             city={`Paris`}
-            sortType={`popular`}
           />
         </Provider>,
         {

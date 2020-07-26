@@ -12,10 +12,12 @@ import {getFilteredOffers, getLocations} from "../../reducer/data/selectors.js";
 import {getSortType} from "../../reducer/app/selectors.js";
 import {getCity} from "../../reducer/data/selectors.js";
 
+import {sortOffers} from "../../utils.js";
 
 const LocationsListWrapped = withActiveItem(LocationsList);
 
 const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, onActiveItemChange, activeItemId, sortType}) => {
+  const filteredOffers = sortOffers(activeOffers, sortType);
 
   return (
     <div className={`page page--gray page--main${activeOffers.length ? `` : ` page__main--index-empty`}`}>
@@ -56,12 +58,11 @@ const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, o
           {activeOffers.length
             ?
             <Places
-              activeOffers={activeOffers}
+              filteredOffers={filteredOffers}
               onHeaderClick={onHeaderClick}
               onActiveItemChange={onActiveItemChange}
               activeItemId={activeItemId}
               city={city}
-              sortType={sortType}
             />
             :
             <PlacesEmpty />

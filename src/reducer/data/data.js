@@ -29,7 +29,6 @@ const Operation = {
         const loadedOffers = response.data.map((offer) => offerAdapter(offer));
         dispatch(ActionCreator.loadOffers(loadedOffers));
         dispatch(ActionCreator.changeCity(loadedOffers[0].city.name));
-        return loadedOffers;
       });
   }
 };

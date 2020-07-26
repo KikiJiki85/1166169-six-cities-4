@@ -46,7 +46,7 @@ const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, o
         <div className="tabs">
           <section className="locations container">
             <LocationsListWrapped
-              initActiveItemId={locations[0]}
+              city={city}
               locations={locations}
               onCityChange={onCityChange}
             />

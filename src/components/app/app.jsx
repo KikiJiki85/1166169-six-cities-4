@@ -6,18 +6,24 @@ import {ActionCreator} from "../../reducer/app/app.js";
 
 import MainPage from "../main-page/main-page.jsx";
 import PropertyPage from "../property-page/property-page.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 import {getOffers} from "../../reducer/data/selectors.js";
-import {getActiveOfferId} from "../../reducer/app/selectors.js";
+import {getActiveOfferId, getShowAuthPage} from "../../reducer/app/selectors.js";
 
 const MainWrapped = withActiveItem(MainPage);
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {offers, onChangeActiveOfferId, offerId} = this.props;
+    const {offers, onChangeActiveOfferId, offerId, showAuth} = this.props;
 
+    if (showAuth) {
+      return (
+        <SignIn />
+      );
+    }
     if (offerId === -1) {
       return (
         <MainWrapped
@@ -43,6 +49,10 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/property">
             <PropertyPage offers={offers} offerId={1} onHeaderClick={onChangeActiveOfferId}/>
+          </Route>
+          <Route exact path="/signin">
+            <SignIn
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -75,6 +85,7 @@ const mapStateToProps = (state) => {
   return {
     offers: getOffers(state),
     offerId: getActiveOfferId(state),
+    showAuth: getShowAuthPage(state),
   };
 };
 

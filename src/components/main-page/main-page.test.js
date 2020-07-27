@@ -84,7 +84,19 @@ it(`Render MainPage`, () => {
       city: offers[0].city.name,
     },
     [NameSpace.APP]: {
-      sortType: `popular`
+      sortType: `popular`,
+      activeOfferId: -1,
+      showAuthPage: false,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `NO_AUTH`,
+      authInfo: {
+        avatarUrl: ``,
+        email: ``,
+        id: null,
+        isPro: null,
+        name: ``,
+      }
     },
   });
 

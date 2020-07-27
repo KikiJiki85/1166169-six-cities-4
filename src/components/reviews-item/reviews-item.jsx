@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {getRating} from "../../utils.js";
 
-const ReviewsItem = ({review, user}) => {
+const ReviewsItem = ({review}) => {
 
-  const {text, rating, date} = review;
+  const {text, rating, date, user} = review;
   const {avatar, name} = user;
   return (
     <li className="reviews__item">
@@ -35,16 +35,15 @@ const ReviewsItem = ({review, user}) => {
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
     id: PropTypes.any.isRequired,
-    userId: PropTypes.any.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired
-  }).isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.any.isRequired,
-    name: PropTypes.string.isRequired,
-    pro: PropTypes.bool.isRequired,
-    avatar: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.any.isRequired,
+      name: PropTypes.string.isRequired,
+      pro: PropTypes.bool.isRequired,
+      avatar: PropTypes.string.isRequired
+    }).isRequired,
   }).isRequired,
 };
 

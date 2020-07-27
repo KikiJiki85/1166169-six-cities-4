@@ -63,6 +63,7 @@ class App extends PureComponent {
 App.propTypes = {
   onChangeActiveOfferId: PropTypes.func.isRequired,
   offerId: PropTypes.any.isRequired,
+  showAuth: PropTypes.bool.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,

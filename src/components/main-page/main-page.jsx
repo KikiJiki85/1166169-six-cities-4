@@ -1,18 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 
-import {sortOffers} from "../../utils.js";
 import LocationsList from "../locations-list/locations-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import Places from "../places/places.jsx";
 import PlacesEmpty from "../places-empty/places-empty.jsx";
 
+import {getFilteredOffers, getLocations} from "../../reducer/data/selectors.js";
+import {getSortType} from "../../reducer/app/selectors.js";
+import {getCity} from "../../reducer/data/selectors.js";
+
+import {sortOffers} from "../../utils.js";
 
 const LocationsListWrapped = withActiveItem(LocationsList);
 
-const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, onActiveItemChange, activeItemId}) => {
+const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, onActiveItemChange, activeItemId, sortType}) => {
+  const filteredOffers = sortOffers(activeOffers, sortType);
 
   return (
     <div className={`page page--gray page--main${activeOffers.length ? `` : ` page__main--index-empty`}`}>
@@ -43,7 +48,7 @@ const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, o
         <div className="tabs">
           <section className="locations container">
             <LocationsListWrapped
-              initActiveItemId={locations[0]}
+              city={city}
               locations={locations}
               onCityChange={onCityChange}
             />
@@ -53,7 +58,7 @@ const MainPage = ({onHeaderClick, city, activeOffers, locations, onCityChange, o
           {activeOffers.length
             ?
             <Places
-              activeOffers={activeOffers}
+              filteredOffers={filteredOffers}
               onHeaderClick={onHeaderClick}
               onActiveItemChange={onActiveItemChange}
               activeItemId={activeItemId}
@@ -76,16 +81,16 @@ MainPage.propTypes = {
   locations: PropTypes.array.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const filteredOffers = state.offers.filter((it) => it.city.name === state.city);
 
   return {
-    activeOffers: filteredOffers ? sortOffers(filteredOffers, state.sortType) : [],
-    city: state.city,
-    activeOfferId: state.activeOfferId,
-    locations: state.locations,
+    activeOffers: getFilteredOffers(state),
+    city: getCity(state),
+    locations: getLocations(state),
+    sortType: getSortType(state),
   };
 };
 

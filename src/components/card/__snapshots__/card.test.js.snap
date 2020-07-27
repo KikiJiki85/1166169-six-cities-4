@@ -16,7 +16,7 @@ exports[`Render Card 1`] = `
         alt="Wood and stone place"
         className="place-card__image"
         height="200"
-        src="./img/apartment-01.jpg"
+        src="img/apartment-01.jpg"
         width="260"
       />
     </a>

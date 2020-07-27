@@ -21,7 +21,7 @@ const ReviewsList = ({reviews, users}) => {
 
 ReviewsList.propTypes = {
   reviews: PropTypes.array.isRequired,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array
 };
 
 export default ReviewsList;

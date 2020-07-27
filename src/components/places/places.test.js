@@ -3,21 +3,24 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import Places from "./places.jsx";
+import NameSpace from "../../reducer/name-space.js";
 
 const TYPES = {
-  apartment: `Apartment`,
-  room: `Private Room`,
-  house: `House`,
-  hotel: `Hotel`
+  apartment: `apartment`,
+  room: `private Room`,
+  house: `house`,
+  hotel: `hotel`
 };
 
 const offers = [
   {
     city: {
       name: `Amsterdam`,
-      coordinates: [52.38333, 4.9]
+      coordinates: [52.38333, 4.9],
+      zoom: 12
     },
     premium: false,
+    previewImage: `img/apartment-01.jpg`,
     favorite: false,
     photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 120,
@@ -29,30 +32,25 @@ const offers = [
     rating: 4.5,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     id: 1,
-    coordinates: [52.3909553943508, 4.85309666406198],
-    reviews: [
-      {
-        id: 1,
-        userId: 2,
-        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
-        rating: 4.3,
-        date: `2019-04-24`
-      },
-      {
-        id: 2,
-        userId: 3,
-        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        rating: 3.2,
-        date: `2019-04-25`
-      }
-    ]
+    host: {
+      avatar: `img/avatar-max.jpg`,
+      id: 1,
+      pro: false,
+      name: `Max`
+    },
+    location: {
+      coordinates: [52.3909553943508, 4.85309666406198],
+      zoom: 10,
+    },
   },
   {
     city: {
       name: `Amsterdam`,
-      coordinates: [52.38333, 4.9]
+      coordinates: [52.38333, 4.9],
+      zoom: 12
     },
     premium: true,
+    previewImage: `img/apartment-03.jpg`,
     favorite: true,
     photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 80,
@@ -64,23 +62,17 @@ const offers = [
     rating: 3.1,
     features: [`Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     id: 2,
-    coordinates: [52.369553943508, 4.85309666406198],
-    reviews: [
-      {
-        id: 1,
-        userId: 2,
-        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur`,
-        rating: 4.3,
-        date: `2019-04-24`
-      },
-      {
-        id: 2,
-        userId: 3,
-        text: `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        rating: 3.2,
-        date: `2019-04-25`
-      }
-    ]
+    host: {
+      avatar: `img/avatar-angelina.jpg`,
+      id: 4,
+      pro: true,
+      name: `Angelina`
+    },
+    location: {
+      coordinates: [48.854082, 2.350379],
+      zoom: 14,
+    },
+
   },
 ];
 
@@ -88,18 +80,16 @@ const mockStore = configureStore([]);
 
 it(`Render Places`, () => {
   const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    locations: Array.from(new Set(offers.map((it) => it.city.name))),
-    sortType: `popular`,
-    activeOfferId: null
+    [NameSpace.APP]: {
+      sortType: `popular`,
+    }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <Places
-            activeOffers={offers}
+            filteredOffers={offers}
             onHeaderClick={() => {}}
             onActiveItemChange={() => {}}
             activeItemId={1}

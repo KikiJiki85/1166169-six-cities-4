@@ -96,7 +96,7 @@ exports[`Render Places 1`] = `
               alt="Wood and stone place"
               className="place-card__image"
               height="200"
-              src="./img/apartment-01.jpg"
+              src="img/apartment-01.jpg"
               width="260"
             />
           </a>
@@ -202,7 +202,7 @@ exports[`Render Places 1`] = `
               alt="Beautiful & luxurious apartment at great location"
               className="place-card__image"
               height="200"
-              src="./img/apartment-02.jpg"
+              src="img/apartment-03.jpg"
               width="260"
             />
           </a>

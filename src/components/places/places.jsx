@@ -9,17 +9,17 @@ import withPlacesSorting from "../../hocs/with-places-sorting/with-places-sortin
 const WrappedPlacesSorting = withPlacesSorting(PlacesSorting);
 
 const Places = (props) => {
-  const {activeOffers, onHeaderClick, onActiveItemChange, activeItemId, city} = props;
+  const {filteredOffers, onHeaderClick, onActiveItemChange, activeItemId, city} = props;
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{activeOffers.length} places to stay in {city}</b>
+        <b className="places__found">{filteredOffers.length} places to stay in {city}</b>
         <WrappedPlacesSorting />
         <div className="cities__places-list places__list tabs__content">
           <CardsList
-            offers={activeOffers}
+            offers={filteredOffers}
             onHeaderClick={onHeaderClick}
             onActiveItemChange={onActiveItemChange}
           />
@@ -27,8 +27,9 @@ const Places = (props) => {
       </section>
       <div className="cities__right-section">
         <Map
-          city={activeOffers[0].city.coordinates}
-          offers={activeOffers}
+          city={filteredOffers[0].city.coordinates}
+          zoom={filteredOffers[0].city.zoom}
+          offers={filteredOffers}
           activeOfferId={activeItemId}
           className={`cities__map map`}
         />
@@ -38,11 +39,12 @@ const Places = (props) => {
 };
 
 Places.propTypes = {
-  activeOffers: PropTypes.array.isRequired,
+  filteredOffers: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
   activeItemId: PropTypes.any.isRequired,
   city: PropTypes.string.isRequired,
+  // sortType: PropTypes.oneOf([SortTypes.POPULAR, SortTypes.PRICE_LOW_HIGH, SortTypes.PRICE_HIGH_LOW, SortTypes.TOP_RATED_FIRST]).isRequired,
 };
 
 export default Places;

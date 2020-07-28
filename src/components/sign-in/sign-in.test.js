@@ -1,9 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+
 import NameSpace from "../../reducer/name-space.js";
+import {SignIn} from "./sign-in.jsx";
 
 const TYPES = {
   apartment: `apartment`,
@@ -76,16 +77,15 @@ const offers = [
   },
 ];
 
-
 const mockStore = configureStore([]);
 
-it(`Render App`, () => {
+it(`Render SignIn`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
-      city: offers[0].city.name,
       offers
     },
     [NameSpace.APP]: {
+      city: offers[0].city.name,
       sortType: `popular`,
       activeOfferId: -1,
       showAuthPage: false,
@@ -105,7 +105,11 @@ it(`Render App`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App/>
+          <SignIn
+            onUserLogin={() => {}}
+            onChangeActiveOfferId={() => {}}
+            onChangeAuthPageState={() => {}}
+          />
         </Provider>,
         {
           createNodeMock: () => {

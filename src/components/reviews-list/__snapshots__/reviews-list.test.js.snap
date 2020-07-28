@@ -17,14 +17,14 @@ exports[`Render ReviewList 1`] = `
           alt="Reviews avatar"
           className="reviews__avatar user__avatar"
           height="54"
-          src="./img/avatar-max.jpg"
+          src="img/1.png"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Viktor
+        Inna
       </span>
     </div>
     <div
@@ -76,14 +76,14 @@ exports[`Render ReviewList 1`] = `
           alt="Reviews avatar"
           className="reviews__avatar user__avatar"
           height="54"
-          src="./img/avatar-angelina.jpg"
+          src="img/1.png"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Alex
+        Max
       </span>
     </div>
     <div

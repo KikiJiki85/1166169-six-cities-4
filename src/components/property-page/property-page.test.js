@@ -4,6 +4,7 @@ import PropertyPage from "./property-page.jsx";
 
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import NameSpace from "../../reducer/name-space.js";
 
 const TYPES = {
   apartment: `apartment`,
@@ -82,11 +83,25 @@ const mockStore = configureStore([]);
 it(`Render PropertyPage`, () => {
 
   const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    locations: Array.from(new Set(offers.map((it) => it.city.name))),
-    sortType: `popular`,
-    activeOfferId: null
+    [NameSpace.DATA]: {
+      offers
+    },
+    [NameSpace.APP]: {
+      city: offers[0].city.name,
+      sortType: `popular`,
+      activeOfferId: -1,
+      showAuthPage: false,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `NO_AUTH`,
+      authInfo: {
+        avatar: ``,
+        email: ``,
+        id: null,
+        pro: null,
+        name: ``,
+      }
+    },
   });
 
   const tree = renderer

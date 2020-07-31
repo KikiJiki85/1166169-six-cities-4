@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ReviewsList from "./reviews-list.jsx";
+import Reviews from "./reviews.jsx";
 
 const reviews = [
   {
@@ -10,18 +10,6 @@ const reviews = [
     date: `2019-04-24`,
     user: {
       avatar: `img/1.png`,
-      id: 5,
-      pro: false,
-      name: `Inna`,
-    }
-  },
-  {
-    id: 2,
-    comment: `Very good`,
-    rating: 3.2,
-    date: `2019-04-25`,
-    user: {
-      avatar: `img/1.png`,
       id: 4,
       pro: false,
       name: `Max`,
@@ -29,11 +17,14 @@ const reviews = [
   }
 ];
 
-it(`Render ReviewList`, () => {
+it(`Render Reviews`, () => {
   const tree = renderer
     .create(
-        <ReviewsList
+        <Reviews
           reviews={reviews}
+          isUserLoggedIn={true}
+          offerId={1}
+          onPostComment={() => {}}
         />
     )
     .toJSON();

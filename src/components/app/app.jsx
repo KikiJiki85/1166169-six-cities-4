@@ -2,15 +2,16 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, BrowserRouter, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/app/app.js";
+
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
+import {getShowAuthPage} from "../../reducer/app/selectors.js";
+import {getOffers, getActiveOfferId} from "../../reducer/data/selectors.js";
+
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 import MainPage from "../main-page/main-page.jsx";
 import PropertyPage from "../property-page/property-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-
-import {getOffers} from "../../reducer/data/selectors.js";
-import {getActiveOfferId, getShowAuthPage} from "../../reducer/app/selectors.js";
 
 const MainWrapped = withActiveItem(MainPage);
 
@@ -78,7 +79,7 @@ App.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeActiveOfferId(id) {
-    dispatch(ActionCreator.changeActiveOfferId(id));
+    dispatch(DataActionCreator.changeActiveOfferId(id));
   }
 });
 

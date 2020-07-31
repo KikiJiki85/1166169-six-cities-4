@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import {Operation} from "../../reducer/data/data.js";
+import {getComments} from "../../reducer/data/selectors.js";
+
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 
@@ -11,11 +14,11 @@ import Reviews from "../reviews/reviews.jsx";
 import Header from "../header/header.jsx";
 import Map from "../map/map.jsx";
 
-const PropertyPage = ({offers, offerId, onHeaderClick, authStatus}) => {
+const PropertyPage = ({offers, offerId, onHeaderClick, authStatus, reviews, postComment}) => {
 
   const offer = offers.find((it) => it.id === offerId);
   const isUserLoggedIn = authStatus === AuthorizationStatus.AUTH;
-  const {photo, premium, favorite, title, rating, type, bedrooms, guests, features, description, reviews = [], host, location} = offer;
+  const {photo, premium, favorite, title, rating, type, bedrooms, guests, features, description, host, location, price} = offer;
   const {avatar, name, pro} = host;
 
   return (
@@ -75,7 +78,7 @@ const PropertyPage = ({offers, offerId, onHeaderClick, authStatus}) => {
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;120</b>
+                <b className="property__price-value">&euro;{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
@@ -113,6 +116,8 @@ const PropertyPage = ({offers, offerId, onHeaderClick, authStatus}) => {
               <Reviews
                 reviews={reviews}
                 isUserLoggedIn={isUserLoggedIn}
+                offerId={offerId}
+                onPostComment={postComment}
               />
             </div>
           </div>
@@ -146,14 +151,23 @@ PropertyPage.propTypes = {
   offers: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   authStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]).isRequired,
-  offerId: PropTypes.number
+  offerId: PropTypes.number.isRequired,
+  reviews: PropTypes.array.isRequired,
+  postComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     authStatus: getAuthStatus(state),
+    reviews: getComments(state),
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  postComment(offerId, commentData) {
+    return dispatch(Operation.postComment(offerId, commentData));
+  }
+});
+
 export {PropertyPage};
-export default connect(mapStateToProps)(PropertyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyPage);

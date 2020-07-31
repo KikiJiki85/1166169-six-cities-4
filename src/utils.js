@@ -1,4 +1,4 @@
-import {SortTypes} from "./const.js";
+import {SortTypes, MONTH_NAMES} from "./const.js";
 
 const MULTIPLIER = 20;
 
@@ -35,4 +35,9 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export {getRating, extend, sortOffers, capitalizeFirstLetter};
+const getMonthYearDate = (dateString) => {
+  const date = new Date(dateString);
+  return `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+};
+
+export {getRating, extend, sortOffers, capitalizeFirstLetter, getMonthYearDate};

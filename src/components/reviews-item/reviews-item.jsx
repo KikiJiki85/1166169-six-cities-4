@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getRating} from "../../utils.js";
+import {getRating, getMonthYearDate} from "../../utils.js";
 
 const ReviewsItem = ({review}) => {
 
-  const {text, rating, date, user} = review;
+  const {comment, rating, date, user} = review;
   const {avatar, name} = user;
   return (
     <li className="reviews__item">
@@ -24,9 +24,9 @@ const ReviewsItem = ({review}) => {
           </div>
         </div>
         <p className="reviews__text">
-          {text}
+          {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{getMonthYearDate(date)}</time>
       </div>
     </li>
   );
@@ -35,7 +35,7 @@ const ReviewsItem = ({review}) => {
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
     id: PropTypes.any.isRequired,
-    text: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     user: PropTypes.shape({

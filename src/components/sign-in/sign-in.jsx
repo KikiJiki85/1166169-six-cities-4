@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {Operation} from "../../reducer/user/user.js";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
+import {ActionCreator as AppActionCreator} from "../../reducer/app/app.js";
+
 import Header from "../header/header.jsx";
 
 
@@ -86,10 +88,10 @@ SignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeActiveOfferId(id) {
-    dispatch(ActionCreator.changeActiveOfferId(id));
+    dispatch(DataActionCreator.changeActiveOfferId(id));
   },
   onChangeAuthPageState(state) {
-    dispatch(ActionCreator.changeAuthPageState(state));
+    dispatch(AppActionCreator.changeAuthPageState(state));
   },
   onUserLogin(authInfo) {
     return dispatch(Operation.loginUser(authInfo));

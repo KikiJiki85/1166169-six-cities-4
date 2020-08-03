@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors.js";
-import {ActionCreator} from "../../reducer/app/app.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../const.js";
 
 const Navigation = (props) => {
-  const {authStatus, authInfo, onChangeAuthPageState} = props;
+  const {authStatus, authInfo} = props;
 
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <a onClick={(evt) => {
-            evt.preventDefault();
-            onChangeAuthPageState(true);
-          }} className="header__nav-link header__nav-link--profile" href="#">
+          <Link
+            className="header__nav-link header__nav-link--profile"
+            to={authStatus === AuthorizationStatus.AUTH ? AppRoute.FAVORITES : AppRoute.LOGIN}
+          >
             <div className="header__avatar-wrapper user__avatar-wrapper">
             </div>
             {
@@ -24,7 +25,7 @@ const Navigation = (props) => {
                 ? <span className="header__user-name user__name">{authInfo.email}</span>
                 : <span className="header__login">Sign in</span>
             }
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
@@ -40,7 +41,6 @@ Navigation.propTypes = {
     pro: PropTypes.bool,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  onChangeAuthPageState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -50,11 +50,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onChangeAuthPageState(state) {
-    dispatch(ActionCreator.changeAuthPageState(state));
-  }
-});
-
 export {Navigation};
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps)(Navigation);

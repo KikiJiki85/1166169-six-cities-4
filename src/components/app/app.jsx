@@ -1,62 +1,41 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Route, BrowserRouter, Switch} from "react-router-dom";
+import {Route, Router, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import {getShowAuthPage} from "../../reducer/app/selectors.js";
+import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 import {getOffers, getActiveOfferId} from "../../reducer/data/selectors.js";
 
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 import MainPage from "../main-page/main-page.jsx";
-import PropertyPage from "../property-page/property-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 
 const MainWrapped = withActiveItem(MainPage);
 
 class App extends PureComponent {
 
-  _renderApp() {
-    const {offers, onChangeActiveOfferId, offerId, showAuth} = this.props;
-
-    if (showAuth) {
-      return (
-        <SignIn />
-      );
-    }
-    if (offerId === -1) {
-      return (
-        <MainWrapped
-          initActiveItemId={-1}
-          onHeaderClick={onChangeActiveOfferId}
-        />
-      );
-    } else {
-      return (
-        <PropertyPage offers={offers} offerId={offerId} onHeaderClick={onChangeActiveOfferId}/>
-      );
-    }
-  }
-
   render() {
-    const {offers, onChangeActiveOfferId} = this.props;
+    const {onChangeActiveOfferId} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
+          <Route exact path={AppRoute.ROOT}>
+            <MainWrapped
+              initActiveItemId={-1}
+              onHeaderClick = {onChangeActiveOfferId}
+            />
           </Route>
-          <Route exact path="/property">
-            <PropertyPage offers={offers} offerId={1} onHeaderClick={onChangeActiveOfferId}/>
-          </Route>
-          <Route exact path="/signin">
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

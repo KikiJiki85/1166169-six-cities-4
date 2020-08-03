@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Card from "./card.jsx";
+import {Card} from "./card.jsx";
 
 const TYPES = {
   apartment: `apartment`,
@@ -80,9 +80,10 @@ it(`Render Card`, () => {
           key={offers[0].id}
           offer={offers[0]}
           isNearPlaces={false}
-          onHeaderClick={() => {}}
           onActiveItemChange={() => {}}
-        />)
+          onFavoritesToggle={() => {}}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

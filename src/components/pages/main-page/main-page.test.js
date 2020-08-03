@@ -1,10 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PropertyPage from "./property-page.jsx";
-
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+
+import history from "../../../history.js";
+import MainPage from "./main-page.jsx";
+import testStore from "../../../mocks/tests-mock-store.js";
 
 const TYPES = {
   apartment: `apartment`,
@@ -76,44 +78,20 @@ const offers = [
 
   },
 ];
-
-
 const mockStore = configureStore([]);
 
-it(`Render PropertyPage`, () => {
-
-  const store = mockStore({
-    [NameSpace.DATA]: {
-      city: offers[0].city.name,
-      offers,
-      activeOfferId: -1,
-      comments: [],
-    },
-    [NameSpace.APP]: {
-      sortType: `popular`,
-      showAuthPage: false,
-    },
-    [NameSpace.USER]: {
-      authorizationStatus: `NO_AUTH`,
-      authInfo: {
-        avatar: ``,
-        email: ``,
-        id: null,
-        pro: null,
-        name: ``,
-      }
-    },
-  });
+it(`Render MainPage`, () => {
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <PropertyPage
-            offerId = {1}
-            offers={offers}
-
-            onHeaderClick={() =>{}}
-          />
+          <Router history={history}>
+            <MainPage
+              activeOffers = {offers}
+              sortType = {`popular`}
+            />
+          </Router>
         </Provider>,
         {
           createNodeMock: () => {

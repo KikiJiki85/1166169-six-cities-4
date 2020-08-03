@@ -2,19 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {Operation} from "../../reducer/data/data.js";
-import {getComments} from "../../reducer/data/selectors.js";
+import {AuthorizationStatus} from "../../../reducer/user/user.js";
+import {getAuthStatus} from "../../../reducer/user/selectors.js";
+import {Operation} from "../../../reducer/data/data.js";
+import {getComments} from "../../../reducer/data/selectors.js";
+import history from "../../../history.js";
+import {AppRoute} from "../../../const.js";
 
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {getRating} from "../../../utils.js";
+import CardsList from "../../cards-list/cards-list.jsx";
+import Reviews from "../../reviews/reviews.jsx";
+import Header from "../../header/header.jsx";
+import Map from "../../map/map.jsx";
 
-import {getRating} from "../../utils.js";
-import CardsList from "../cards-list/cards-list.jsx";
-import Reviews from "../reviews/reviews.jsx";
-import Header from "../header/header.jsx";
-import Map from "../map/map.jsx";
-
-const PropertyPage = ({offers, offerId, onHeaderClick, authStatus, reviews, postComment}) => {
+const PropertyPage = ({offers, offerId, onHeaderClick, authStatus, reviews, postComment, onFavoritesToggle}) => {
 
   const offer = offers.find((it) => it.id === offerId);
   const isUserLoggedIn = authStatus === AuthorizationStatus.AUTH;
@@ -138,6 +139,7 @@ const PropertyPage = ({offers, offerId, onHeaderClick, authStatus, reviews, post
                 isNearPlaces={true}
                 onHeaderClick={onHeaderClick}
                 onActiveItemChange={() => {}}
+                onFavoritesToggle={onFavoritesToggle}
               />
             </div>
           </section>
@@ -154,6 +156,7 @@ PropertyPage.propTypes = {
   offerId: PropTypes.number.isRequired,
   reviews: PropTypes.array.isRequired,
   postComment: PropTypes.func.isRequired,
+  onFavoritesToggle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -166,7 +169,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   postComment(offerId, commentData) {
     return dispatch(Operation.postComment(offerId, commentData));
-  }
+  },
+  onFavoritesToggle(offerId, favoriteStatus) {
+    dispatch(Operation.postFavorite(offerId, favoriteStatus))
+    .catch((error) => {
+      if (error.response.status === 401) {
+        history.push(AppRoute.LOGIN);
+      }
+    });
+  },
 });
 
 export {PropertyPage};

@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors.js";
+
 import {AppRoute} from "../../const.js";
 
 const Navigation = (props) => {
@@ -35,7 +36,7 @@ const Navigation = (props) => {
 Navigation.propTypes = {
   authStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]).isRequired,
   authInfo: PropTypes.shape({
-    avatar: PropTypes.string,
+    avatar: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     id: PropTypes.any,
     pro: PropTypes.bool,

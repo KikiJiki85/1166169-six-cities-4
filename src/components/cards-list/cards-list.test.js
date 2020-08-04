@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import CardsList from "./cards-list.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import testStore from "../../mocks/tests-mock-store.js";
 
 const TYPES = {
   apartment: `apartment`,
@@ -74,26 +75,18 @@ const offers = [
 
   },
 ];
-
 const mockStore = configureStore([]);
 
 it(`Render CardsList`, () => {
-
-  const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    locations: Array.from(new Set(offers.map((it) => it.city.name))),
-    sortType: `popular`,
-    activeOfferId: null
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <CardsList
             offers={offers}
-            onHeaderClick={() => {}}
             onActiveItemChange={() => {}}
+            isNearPlaces={false}
           />
         </Provider>
     )

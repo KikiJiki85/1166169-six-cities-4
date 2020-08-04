@@ -125,6 +125,7 @@ exports[`Render Places 1`] = `
             </div>
             <button
               className="place-card__bookmark-button button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -168,7 +169,6 @@ exports[`Render Places 1`] = `
           >
             <a
               href="#"
-              onClick={[Function]}
             >
               Wood and stone place
             </a>
@@ -231,6 +231,7 @@ exports[`Render Places 1`] = `
             </div>
             <button
               className="place-card__bookmark-button button place-card__bookmark-button--active"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -274,7 +275,6 @@ exports[`Render Places 1`] = `
           >
             <a
               href="#"
-              onClick={[Function]}
             >
               Beautiful & luxurious apartment at great location
             </a>

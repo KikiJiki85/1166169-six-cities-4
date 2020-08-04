@@ -24,7 +24,6 @@ it(`Should LocationsList item to be pressed and return proper value`, () => {
     preventDefault: () => {}
   });
 
-
   expect(onCityChange.mock.calls.length).toBe(1);
   expect(onCityChange.mock.calls[0][0]).toBe(`London`);
 });

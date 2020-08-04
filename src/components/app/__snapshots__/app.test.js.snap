@@ -18,6 +18,8 @@ exports[`Render App 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -185,7 +187,7 @@ exports[`Render App 1`] = `
                   href="#"
                 >
                   <img
-                    alt="Wood and stone place"
+                    alt="Place image"
                     className="place-card__image"
                     height="200"
                     src="img/apartment-01.jpg"
@@ -211,8 +213,7 @@ exports[`Render App 1`] = `
                     <span
                       className="place-card__price-text"
                     >
-                      / 
-                      Private Room
+                      / night
                     </span>
                   </div>
                   <button
@@ -260,7 +261,8 @@ exports[`Render App 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -268,7 +270,7 @@ exports[`Render App 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  Private Room
                 </p>
               </div>
             </article>
@@ -278,20 +280,13 @@ exports[`Render App 1`] = `
               onMouseLeave={[Function]}
             >
               <div
-                className="place-card__mark"
-              >
-                <span>
-                  Premium
-                </span>
-              </div>
-              <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
-                    alt="Beautiful & luxurious apartment at great location"
+                    alt="Place image"
                     className="place-card__image"
                     height="200"
                     src="img/apartment-03.jpg"
@@ -317,12 +312,11 @@ exports[`Render App 1`] = `
                     <span
                       className="place-card__price-text"
                     >
-                      / 
-                      Apartment
+                      / night
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button place-card__bookmark-button--active"
+                    className="place-card__bookmark-button button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -366,7 +360,8 @@ exports[`Render App 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>

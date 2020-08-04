@@ -13,7 +13,7 @@ exports[`Render Card 1`] = `
       href="#"
     >
       <img
-        alt="Wood and stone place"
+        alt="Place image"
         className="place-card__image"
         height="200"
         src="img/apartment-01.jpg"
@@ -39,8 +39,7 @@ exports[`Render Card 1`] = `
         <span
           className="place-card__price-text"
         >
-          / 
-          Private Room
+          / night
         </span>
       </div>
       <button
@@ -88,7 +87,8 @@ exports[`Render Card 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         Wood and stone place
       </a>
@@ -96,7 +96,7 @@ exports[`Render Card 1`] = `
     <p
       className="place-card__type"
     >
-      Apartment
+      Private Room
     </p>
   </div>
 </article>

@@ -18,10 +18,10 @@ const offers = [
       coordinates: [52.38333, 4.9],
       zoom: 12
     },
-    premium: false,
+    isPremium: false,
     previewImage: `img/apartment-01.jpg`,
-    favorite: false,
-    photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
+    isFavorite: false,
+    pictures: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 120,
     title: `Wood and stone place`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
@@ -48,10 +48,10 @@ const offers = [
       coordinates: [52.38333, 4.9],
       zoom: 12
     },
-    premium: true,
+    isPremium: true,
     previewImage: `img/apartment-03.jpg`,
-    favorite: true,
-    photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
+    isFavorite: true,
+    pictures: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
     price: 80,
     title: `Beautiful & luxurious apartment at great location`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -74,6 +74,7 @@ const offers = [
 
   },
 ];
+
 Enzyme.configure({
   adapter: new Adapter(),
 });

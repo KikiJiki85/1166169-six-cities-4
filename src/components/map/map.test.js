@@ -4,31 +4,31 @@ import Main from "./map.jsx";
 
 const TYPES = {
   apartment: `apartment`,
-  room: `private Room`,
+  room: `room`,
   house: `house`,
   hotel: `hotel`
 };
 
 const offers = [
   {
+    id: 1,
     city: {
       name: `Amsterdam`,
       coordinates: [52.38333, 4.9],
       zoom: 12
     },
-    premium: false,
+    title: `Beautiful & luxurious apartment at great location`,
     previewImage: `img/apartment-01.jpg`,
-    favorite: false,
-    photo: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
+    pictures: [`img/apartment-01.jpg`, `img/room.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-01.jpg`, `img/apartment-01.jpg`],
     price: 120,
-    title: `Wood and stone place`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: TYPES.room,
-    bedrooms: 3,
-    maxGuests: 3,
-    rating: 4.5,
+    type: TYPES.apartment,
+    rating: 4.8,
+    isPremium: true,
+    isFavorite: false,
+    bedrooms: 2,
+    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+    guests: 3,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 1,
     host: {
       avatar: `img/avatar-max.jpg`,
       id: 1,
@@ -41,24 +41,24 @@ const offers = [
     },
   },
   {
+    id: 5,
     city: {
-      name: `Amsterdam`,
-      coordinates: [52.38333, 4.9],
+      name: `Paris`,
+      coordinates: [48.855931, 2.350962],
       zoom: 12
     },
-    premium: true,
+    title: `Not bad!`,
     previewImage: `img/apartment-03.jpg`,
-    favorite: true,
-    photo: [`./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/room.jpg`],
-    price: 80,
-    title: `Beautiful & luxurious apartment at great location`,
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    type: TYPES.apartment,
-    bedrooms: 2,
-    maxGuests: 2,
-    rating: 3.1,
-    features: [`Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    id: 2,
+    pictures: [`img/apartment-03.jpg`, `img/room.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
+    price: 999,
+    type: TYPES.hotel,
+    rating: 3.2,
+    isPremium: false,
+    isFavorite: true,
+    bedrooms: 1,
+    description: `An independent House.`,
+    guests: 1,
+    features: [`Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
     host: {
       avatar: `img/avatar-angelina.jpg`,
       id: 4,
@@ -69,8 +69,7 @@ const offers = [
       coordinates: [48.854082, 2.350379],
       zoom: 14,
     },
-
-  },
+  }
 ];
 
 it(`Render Map`, () => {

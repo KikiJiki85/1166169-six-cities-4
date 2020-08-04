@@ -14,7 +14,7 @@ Array [
         href="#"
       >
         <img
-          alt="Wood and stone place"
+          alt="Place image"
           className="place-card__image"
           height="200"
           src="img/apartment-01.jpg"
@@ -40,8 +40,7 @@ Array [
           <span
             className="place-card__price-text"
           >
-            / 
-            Private Room
+            / night
           </span>
         </div>
         <button
@@ -89,7 +88,8 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -97,7 +97,7 @@ Array [
       <p
         className="place-card__type"
       >
-        Apartment
+        Private Room
       </p>
     </div>
   </article>,
@@ -120,7 +120,7 @@ Array [
         href="#"
       >
         <img
-          alt="Beautiful & luxurious apartment at great location"
+          alt="Place image"
           className="place-card__image"
           height="200"
           src="img/apartment-03.jpg"
@@ -146,8 +146,7 @@ Array [
           <span
             className="place-card__price-text"
           >
-            / 
-            Apartment
+            / night
           </span>
         </div>
         <button
@@ -167,7 +166,7 @@ Array [
           <span
             className="visually-hidden"
           >
-            To bookmarks
+            In bookmarks
           </span>
         </button>
       </div>
@@ -195,7 +194,8 @@ Array [
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>

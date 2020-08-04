@@ -77,8 +77,8 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
   }),
   onActiveItemChange: PropTypes.func.isRequired,
   onFavoritesToggle: PropTypes.func.isRequired,

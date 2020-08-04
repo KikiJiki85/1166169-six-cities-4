@@ -3,6 +3,9 @@ import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
+
+import history from "../../history.js";
 
 import Places from "./places.jsx";
 
@@ -86,15 +89,17 @@ it(`Render Places`, () => {
 
   const tree = renderer
     .create(
-        <Provider store={store}>
+        <Router history={history}>
+          <Provider store={store}>
           <Places
             activeOffers={offers}
             onActiveItemChange={() => {}}
             activeItemId={1}
             city={`Paris`}
-            sortType={`popular`}
+            sortedActiveOffers={offers}
           />
-        </Provider>,
+          </Provider>
+        </Router>,
         {
           createNodeMock: () => {
             return document.createElement(`div`);

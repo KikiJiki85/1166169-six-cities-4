@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
-
-const CardsList = ({offers, isNearPlaces, onActiveItemChange}) => {
+const CardsList = (props) => {
+  const {offers, onActiveItemChange, cardType} = props;
 
   return (
     offers.map((offer) => {
       return (
         <Card
-          offer = {offer}
-          key = {offer.id}
-          isNearPlaces={isNearPlaces}
+          key={offer.id}
+          offer={offer}
           onActiveItemChange={onActiveItemChange}
+          cardType={cardType}
         />
       );
     })
@@ -20,18 +20,20 @@ const CardsList = ({offers, isNearPlaces, onActiveItemChange}) => {
 };
 
 CardsList.propTypes = {
-  onActiveItemChange: PropTypes.func.isRequired,
-  isNearPlaces: PropTypes.bool,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        photo: PropTypes.arrayOf(PropTypes.string.isRequired),
+        pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
         price: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
-        premium: PropTypes.bool.isRequired
+        rating: PropTypes.number.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        isFavorite: PropTypes.bool.isRequired
       })
-  )
+  ),
+  onActiveItemChange: PropTypes.func.isRequired,
+  cardType: PropTypes.string.isRequired,
 };
 
 export default CardsList;

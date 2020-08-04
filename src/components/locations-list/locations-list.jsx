@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {ActionCreator} from "../../reducer/data/data.js";
+import {getLocations, getCity} from "../../reducer/data/selectors.js";
 
 class LocationsList extends React.PureComponent {
   render() {
     const {locations, onCityChange, city} = this.props;
+
     return (
       <ul className="locations__list tabs__list">
         {locations.map((it) => {
@@ -33,4 +38,18 @@ LocationsList.propTypes = {
   onCityChange: PropTypes.func.isRequired,
 };
 
-export default LocationsList;
+const mapStateToProps = (state) => {
+  return {
+    city: getCity(state),
+    locations: getLocations(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityChange(city) {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
+export {LocationsList};
+export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);

@@ -4,9 +4,8 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
-import reducer from "./reducer/reducer.js";
 import App from "./components/app/app.jsx";
-
+import reducer from "./reducer/reducer.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {AuthorizationStatus, ActionCreator as UserActionCreator, Operation as UserOperation} from "./reducer/user/user.js";
 
@@ -33,5 +32,3 @@ ReactDOM.render(
     </Provider>,
     document.querySelector(`#root`)
 );
-
-

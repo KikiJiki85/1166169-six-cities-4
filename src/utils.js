@@ -1,13 +1,11 @@
 import {SortTypes, MONTH_NAMES} from "./const.js";
 
-const MULTIPLIER = 20;
-
-const getRating = (num) => {
-  return Math.round(num) * MULTIPLIER;
+const getRating = (rating) => {
+  return Math.round(rating) * 20;
 };
 
-const extend = (x, y) => {
-  return Object.assign({}, x, y);
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
 };
 
 const sortOffers = (offers, sortType) => {

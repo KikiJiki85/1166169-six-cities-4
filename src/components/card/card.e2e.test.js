@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {Card} from "./card.jsx";
+import {CardType} from "../../const.js";
 
 const TYPES = {
   apartment: `apartment`,
@@ -85,9 +86,9 @@ describe(`Card mouse input testing`, () => {
       <Card
         key={offers[0].id}
         offer={offers[0]}
-        isNearPlaces={false}
         onActiveItemChange={onActiveItemChange}
         onFavoritesToggle={onFavoritesToggle}
+        cardType={CardType.MAIN}
       />
   );
 

@@ -1,10 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Card} from "./card.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 
 import history from "../../history.js";
-import {CardType} from "../../const.js";
+import FavoritesLocations from "./favorites-locations.jsx";
+
+import testStore from "../../mocks/tests-mock-store.js";
 
 const TYPES = {
   apartment: `apartment`,
@@ -77,18 +80,21 @@ const offers = [
   },
 ];
 
-it(`Render Card`, () => {
+
+const mockStore = configureStore([]);
+
+it(`Render FavoritesLocations`, () => {
+  const store = mockStore(testStore);
   const tree = renderer
     .create(
-      <Router history={history}>
-        <Card
-          key={offers[0].id}
-          offer={offers[0]}
-          onActiveItemChange={() => {}}
-          onFavoritesToggle={() => {}}
-          cardType={CardType.MAIN}
-        />
-      </Router>
+        <Router history={history}>
+          <Provider store={store}>
+            <FavoritesLocations
+              location={offers[0].city.name}
+              offers={offers}
+            />
+          </Provider>
+        </Router>
     )
     .toJSON();
 

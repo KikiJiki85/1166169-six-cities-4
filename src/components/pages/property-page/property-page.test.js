@@ -91,16 +91,22 @@ it(`Render PropertyPage`, () => {
         <Provider store={store}>
           <Router history={history}>
             <PropertyPage
-              offerId = {1}
-              offers = {offers}
-              onPlaceCardHeaderClick = {() => {}}
+               match={{params: {id: `1`}}}
+               offer={offers[0]}
+               reviews={[]}
+               nearby={offers}
+               authStatus={`AUTH`}
+               loadComments={() => {}}
+               loadNearby={() => {}}
+               postComment={() => {}}
+               onFavoritesToggle={() => {}}
             />
           </Router>
         </Provider>,
         {
           createNodeMock: () => {
             return document.createElement(`div`);
-          }
+          },
         }
     )
     .toJSON();

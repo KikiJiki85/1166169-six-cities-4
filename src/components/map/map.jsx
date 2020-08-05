@@ -59,7 +59,7 @@ class Map extends React.PureComponent {
 
     offers.forEach((it) => {
       if (it.id === activeOfferId) {
-        leaflet.marker(it.location.coordinates, {icon:iconActive}).addTo(this._markersLayer);
+        leaflet.marker(it.location.coordinates, {icon: iconActive}).addTo(this._markersLayer);
       } else {
         leaflet.marker(it.location.coordinates, {icon: iconPassive}).addTo(this._markersLayer);
       }

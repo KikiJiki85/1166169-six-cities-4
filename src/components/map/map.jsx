@@ -18,7 +18,6 @@ class Map extends React.PureComponent {
       center: city,
       zoom,
       zoomControl: false,
-      marker: true
     });
 
     this._map.setView(city, zoom);
@@ -48,7 +47,7 @@ class Map extends React.PureComponent {
   _renderMarkers() {
     const {activeOfferId, offers} = this.props;
 
-    const icon = leaflet.icon({
+    const iconPassive = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
@@ -60,9 +59,9 @@ class Map extends React.PureComponent {
 
     offers.forEach((it) => {
       if (it.id === activeOfferId) {
-        leaflet.marker(it.location.coordinates, {iconActive}).addTo(this._markersLayer);
+        leaflet.marker(it.location.coordinates, {icon:iconActive}).addTo(this._markersLayer);
       } else {
-        leaflet.marker(it.location.coordinates, {icon}).addTo(this._markersLayer);
+        leaflet.marker(it.location.coordinates, {icon: iconPassive}).addTo(this._markersLayer);
       }
     });
   }

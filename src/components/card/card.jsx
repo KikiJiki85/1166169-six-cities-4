@@ -86,9 +86,7 @@ Card.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFavoritesToggle(offerId, favoriteStatus) {
-    dispatch(Operation.postFavorite(offerId, favoriteStatus));
-  },
+  onFavoritesToggle: (offerId, favoriteStatus) => dispatch(Operation.postFavorite(offerId, favoriteStatus)),
 });
 
 export {Card};

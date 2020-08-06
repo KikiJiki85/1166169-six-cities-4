@@ -86,12 +86,8 @@ SignInPage.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onUserLogin(authInfo) {
-    return dispatch(Operation.loginUser(authInfo));
-  },
-  loadFavorite() {
-    dispatch(DataOperation.loadFavorite());
-  }
+  onUserLogin: (authInfo) => dispatch(Operation.loginUser(authInfo)),
+  loadFavorite: () => dispatch(DataOperation.loadFavorite()),
 });
 
 export {SignInPage};

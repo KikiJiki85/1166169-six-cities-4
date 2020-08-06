@@ -312,7 +312,6 @@ exports[`Render PropertyPage 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-max.jpg"
                   width="74"
                 />
               </div>

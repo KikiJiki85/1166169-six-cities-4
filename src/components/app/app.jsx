@@ -3,6 +3,7 @@ import {Router, Route, Switch} from "react-router-dom";
 
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";
+import {AuthorizationStatus} from "../../reducer/user/user";
 
 import MainPage from "../pages/main-page/main-page.jsx";
 import PropertyPage from "../pages/property-page/property-page.jsx";
@@ -11,8 +12,8 @@ import FavoritesPage from "../pages/favorites-page/favorites-page.jsx";
 import withAuthRoute from "../../hocs/with-auth-route/with-auth-route.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
-const FavoritesPageWrapped = withAuthRoute(FavoritesPage, AppRoute.LOGIN);
-const SignInPageWrapped = withActiveItem(SignInPage);
+const FavoritesPageWrapped = withAuthRoute(AuthorizationStatus.AUTH, FavoritesPage, AppRoute.LOGIN);
+const SignInPageWrapped = withActiveItem(withAuthRoute(AuthorizationStatus.NO_AUTH, SignInPage, AppRoute.ROOT));
 
 class App extends React.PureComponent {
   render() {

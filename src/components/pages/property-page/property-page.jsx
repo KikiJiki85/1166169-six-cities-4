@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../../reducer/user/user.js";
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
 import {Operation} from "../../../reducer/data/data.js";
-import {getComments, getOfferById, getNearby} from "../../../reducer/data/selectors.js";
+import {getSortedComments, getOfferById, getNearby} from "../../../reducer/data/selectors.js";
 import {CardType} from "../../../const.js";
 
 import {getRating} from "../../../utils.js";
@@ -51,7 +51,7 @@ class PropertyPage extends React.PureComponent {
     const mapOffers = [].concat(nearby, offer);
 
     const {pictures, isPremium, isFavorite, title, rating, type, bedrooms, guests, features, description, host, location, price, city} = offer;
-    const {name, isPro, avatarUrl} = host;
+    const {name, pro, avatar} = host;
 
     return (
       <div className="page">
@@ -125,8 +125,8 @@ class PropertyPage extends React.PureComponent {
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className={`property__avatar-wrapper user__avatar-wrapper${isPro ? ` property__avatar-wrapper--pro` : ``}`}>
-                      <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
+                    <div className={`property__avatar-wrapper user__avatar-wrapper${pro ? ` property__avatar-wrapper--pro` : ``}`}>
+                      <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
                       {name}
@@ -187,7 +187,7 @@ PropertyPage.propTypes = {
   }).isRequired,
   loadComments: PropTypes.func.isRequired,
   loadNearby: PropTypes.func.isRequired,
-  offer: PropTypes.object.isRequired,
+  offer: PropTypes.object,
   onFavoritesToggle: PropTypes.func.isRequired,
 };
 
@@ -195,7 +195,7 @@ PropertyPage.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     authStatus: getAuthStatus(state),
-    reviews: getComments(state),
+    reviews: getSortedComments(state),
     offer: getOfferById(state, parseInt(ownProps.match.params.id, 10)),
     nearby: getNearby(state),
   };

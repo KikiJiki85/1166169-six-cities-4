@@ -3,24 +3,23 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
-import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 
-const withAuthRoute = (Component, path) => {
+const withAuthRoute = (authStatus, Component, path) => {
   const WithPrivateRoute = (props) => {
-    const {authStatus} = props;
-    return authStatus === AuthorizationStatus.AUTH
+    const {authStateStatus} = props;
+    return authStateStatus === authStatus
       ? <Component {...props} />
       : <Redirect to={path} />;
   };
 
   WithPrivateRoute.propTypes = {
-    authStatus: PropTypes.string.isRequired,
+    authStateStatus: PropTypes.string.isRequired,
   };
 
   const mapStateToProps = (state) => {
     return {
-      authStatus: getAuthStatus(state),
+      authStateStatus: getAuthStatus(state),
     };
   };
 

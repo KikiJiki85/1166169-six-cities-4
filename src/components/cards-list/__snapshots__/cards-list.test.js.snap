@@ -96,9 +96,7 @@ Array [
       </h2>
       <p
         className="place-card__type"
-      >
-        Private Room
-      </p>
+      />
     </div>
   </article>,
   <article

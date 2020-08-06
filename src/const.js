@@ -1,3 +1,5 @@
+const MAX_REVIEWS = 10;
+
 const SortTypes = {
   POPULAR: `popular`,
   PRICE_LOW_HIGH: `priceLowHigh`,
@@ -44,4 +46,11 @@ const CardType = {
   FAVORITES: `FAVORITES`,
 };
 
-export {SortTypes, SortTypeTexts, MONTH_NAMES, AppRoute, Error, CardType};
+const Type = {
+  apartment: `apartment`,
+  room: `room`,
+  house: `house`,
+  hotel: `hotel`,
+};
+
+export {SortTypes, SortTypeTexts, MONTH_NAMES, AppRoute, Error, CardType, Type, MAX_REVIEWS};

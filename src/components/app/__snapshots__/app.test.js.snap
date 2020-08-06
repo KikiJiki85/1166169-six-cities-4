@@ -269,9 +269,7 @@ exports[`Render App 1`] = `
                 </h2>
                 <p
                   className="place-card__type"
-                >
-                  Private Room
-                </p>
+                />
               </div>
             </article>
             <article

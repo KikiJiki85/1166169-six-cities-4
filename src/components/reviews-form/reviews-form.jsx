@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 
 import ReviewsRating from "../reviews-rating/reviews-rating.jsx";
 
+const MIN_COMMENT_LENGTH = 50;
+const MAX_COMMENT_LENGTH = 300;
+
 class ReviewsForm extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -38,7 +41,7 @@ class ReviewsForm extends React.PureComponent {
   render() {
     const {formStates} = this.props;
     const {rating, review, isFormDisabled, errorText} = formStates;
-    const isSubmitDisabled = !(rating && (review.length >= 50 && review.length <= 300));
+    const isSubmitDisabled = !(rating && (review.length >= MIN_COMMENT_LENGTH && review.length <= MAX_COMMENT_LENGTH));
 
     return (
       <form onSubmit={this.handleSubmit} className="reviews__form form" action="#" method="post">

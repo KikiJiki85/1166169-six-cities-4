@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {Operation} from "../../reducer/data/data.js";
-import {CardType, Type, AppRoute} from "../../const.js";
+import {CardType, Type, AppRoute, FavoritesImageSize, OthersImageSize} from "../../const.js";
 import {getRating} from "../../utils.js";
 
 const typeToArticleClass = {
@@ -42,8 +42,8 @@ const Card = (props) => {
           <img
             className="place-card__image"
             src={previewImage}
-            width={cardType === CardType.FAVORITES ? `150` : `260`}
-            height={cardType === CardType.FAVORITES ? `110` : `200`}
+            width={cardType === CardType.FAVORITES ? FavoritesImageSize.WIDTH : OthersImageSize.WIDTH}
+            height={cardType === CardType.FAVORITES ? FavoritesImageSize.HEIGHT : OthersImageSize.HEIGHT}
             alt="Place image"
           />
         </a>

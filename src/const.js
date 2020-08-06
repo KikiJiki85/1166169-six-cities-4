@@ -54,4 +54,14 @@ const Type = {
   hotel: `hotel`,
 };
 
-export {SortTypes, SortTypeTexts, MONTH_NAMES, AppRoute, Error, CardType, Type, MAX_REVIEWS};
+const FavoritesImageSize = {
+  WIDTH: `150`,
+  HEIGHT: `110`,
+};
+
+const OthersImageSize = {
+  WIDTH: `260`,
+  HEIGHT: `200`,
+};
+
+export {SortTypes, SortTypeTexts, MONTH_NAMES, AppRoute, Error, CardType, Type, MAX_REVIEWS, FavoritesImageSize, OthersImageSize};

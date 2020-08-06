@@ -34,6 +34,7 @@ const AppRoute = {
   ROOT: `/`,
   FAVORITES: `/favorites`,
   OFFER: `/offer`,
+  ERROR: `/error`,
 };
 
 const Error = {

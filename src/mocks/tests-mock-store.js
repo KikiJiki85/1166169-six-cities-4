@@ -78,6 +78,7 @@ const testStore = {
     comments: [],
     nearby: [],
     sortType: `popular`,
+    errorText: ``,
   },
   [NameSpace.USER]: {
     authorizationStatus: `NO_AUTH`,

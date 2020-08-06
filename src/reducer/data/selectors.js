@@ -68,9 +68,13 @@ const getSortedFilteredOffers = createSelector(
     (offers, sortType) => sortOffers(offers, sortType)
 );
 
+const getErrorText = (state) => {
+  return state[NAME_SPACE].errorText;
+};
+
 const getSortedComments = createSelector(
     getComments,
     (comments) => comments.slice().sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
 );
 
-export {getOffers, getCity, getComments, getNearby, getSortType, getFavorites, getFilteredOffers, getLocations, getFavoritesLocations, getOfferById, getSortedFilteredOffers, getSortedComments};
+export {getOffers, getCity, getComments, getNearby, getSortType, getFavorites, getFilteredOffers, getLocations, getFavoritesLocations, getOfferById, getSortedFilteredOffers, getSortedComments, getErrorText};

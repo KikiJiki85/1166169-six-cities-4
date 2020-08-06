@@ -6,6 +6,7 @@ import {AppRoute} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user";
 
 import MainPage from "../pages/main-page/main-page.jsx";
+import ErrorPage from "../pages/error-page/error-page.jsx";
 import PropertyPage from "../pages/property-page/property-page.jsx";
 import SignInPage from "../pages/sign-in-page/sign-in-page.jsx";
 import FavoritesPage from "../pages/favorites-page/favorites-page.jsx";
@@ -23,6 +24,7 @@ class App extends React.PureComponent {
           <Route exact path={AppRoute.LOGIN} component={SignInPageWrapped}/>
           <Route exact path={`${AppRoute.OFFER}/:id`} component={PropertyPage} />
           <Route exact path={AppRoute.FAVORITES} component={FavoritesPageWrapped} />
+          <Route path={AppRoute.ERROR} component={ErrorPage}/>
           <Route path={AppRoute.ROOT} component={MainPage}/>
         </Switch>
       </Router>

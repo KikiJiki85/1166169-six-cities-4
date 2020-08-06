@@ -5,7 +5,7 @@ import PlacesEmpty from "./places-empty.jsx";
 it(`Render PlacesEmpty`, () => {
   const tree = renderer
     .create(
-        <PlacesEmpty />
+        <PlacesEmpty city={`Dusseldorf`}/>
     )
     .toJSON();
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getFilteredOffers} from "../../../reducer/data/selectors.js";
+import {getFilteredOffers, getCity} from "../../../reducer/data/selectors.js";
 
 import withActiveItem from "../../../hocs/with-active-item/with-active-item.js";
 import Header from "../../header/header.jsx";
@@ -13,7 +13,7 @@ import PlacesEmpty from "../../places-empty/places-empty.jsx";
 const PlacesWrapped = withActiveItem(Places);
 
 const MainPage = (props) => {
-  const {activeOffers} = props;
+  const {activeOffers, activeCity} = props;
 
   return (
     <div className={`page page--gray page--main${activeOffers.length ? `` : ` page__main--index-empty`}`}>
@@ -28,7 +28,7 @@ const MainPage = (props) => {
           </section>
         </div>
         <div className="cities">
-          {activeOffers.length ? <PlacesWrapped /> : <PlacesEmpty />}
+          {activeOffers.length ? <PlacesWrapped /> : <PlacesEmpty city={activeCity}/>}
         </div>
       </main>
     </div>
@@ -37,11 +37,13 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   activeOffers: PropTypes.array.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     activeOffers: getFilteredOffers(state),
+    activeCity: getCity(state),
   };
 };
 

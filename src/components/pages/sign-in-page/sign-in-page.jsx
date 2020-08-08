@@ -28,7 +28,6 @@ class SignInPage extends React.PureComponent {
       password: this.password.current.value,
     })
     .then(() => {
-      onActiveItemChange(``);
       loadFavorite();
       history.push(AppRoute.ROOT);
     })
